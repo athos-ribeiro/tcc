@@ -25,9 +25,9 @@ EDITAVEIS_SOURCES = informacoes.tex errata.tex dedicatoria.tex \
 EDITAVEIS_FILES = $(addprefix $(EDITAVEIS_DIR)/, $(EDITAVEIS_SOURCES))
 
 CAPITULOS_DIR = capitulos
-CAPITULOS_SOURCES = 1-introducao.tex  2-analise_estatica.tex  \
-										3-ferramentas_analise_estatica.tex  4-data_analysis.tex \
-										5-metodologia.tex 7-conclusao.tex
+CAPITULOS_SOURCES = 1-introducao.tex  2-fundamentacao_teorica.tex  \
+										3-metodologia.tex  4-metodologia_proposta.tex \
+										5-estudos_de_caso.tex 6-conclusoes.tex
 
 CAPITULOS_FILES = $(addprefix $(CAPITULOS_DIR)/, $(CAPITULOS_SOURCES))
 
