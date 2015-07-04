@@ -1,1 +1,187 @@
+\chapter{Metodologia Proposta}\label{metodologia_proposta}
 
+\section{Visão Geral}\label{metodologia_proposta::visao_geral}
+
+Propõe-se aqui, uma metodologia para avaliação de ferramentas de análise estática de código-fonte. O método é composto de 11 atividades, que estão listadas a seguir, representadas no fluxograma na figura XXXX e detalhadas na próxima seção.
+
+\begin{itemize}
+  \item Estabelecer objetivo de análise, critérios e métricas;
+  \item Eleger ferramentas candidatas;
+  \item Definir um conjunto de casos de teste;
+  \item Definir linguagem comum para reportar defeitos;
+  \item Traduzir casos de teste para linguagem comum;
+\end{itemize}
+
+Em seguida, para cada uma das ferramentas selecionadas, devem-se seguir os seguintes passos:
+
+\begin{itemize}
+  \item Selecionar subconjunto de casos de teste para análise;
+  \item Realizar análise;
+  \item Traduzir resultado da análise para linguagem comum;
+  \item Comparar resultados da análise com defeitos dos casos de  teste;
+  \item Analisar métricas e confrontar com critérios;
+\end{itemize}
+
+Por fim, deve-se, para todas as ferramentas,
+\begin{itemize}
+  \item Apresentar resultados e/ou classificar ferramentas.
+\end{itemize}
+
+% TODO: [INSERIR IMAGEM COM FLUXOGRAMA]
+
+Na seção a seguir, \nameref{metodologia_proposta::detalhamento_de_atividades} e em suas subseções, são detalhadas cada uma das atividades listadas, incluindo, quando relevantes, sugestões de como melhor alcançar os resultados de cada uma delas.
+
+\section{Detalhamento de atividades}\label{metodologia_proposta::detalhamento_de_atividades}
+
+\subsection{Estabelecer objetivo de análise, critérios e métricas}
+
+Inicialmente deve-se definir um escopo: Os \textbf{objetivos} a serem alcançados com a análise estática, como por exemplo, a diminuição de defeitos críticos no código, bem como a definição de quais tipos de defeitos devem ser considerados críticos, ou o levantamento do maior número de possíveis pontos de defeitos. Note que, quanto maior o número de defeitos que uma ferramenta reporta, maior o esforço empregado em analisar o relatório de tal ferramenta e maior o trabalho da equipe de desenvolvimento em avaliar e mitigar cada um dos possíveis defeitos encontrados no código, de modo que, como sugerido por \cite{seatbelts}, deve-se calibrar a ferramenta para que a análise alinhe-se com os focos do desenvolvimento.
+
+Ferramentas de análise estática de código fonte podem utilizar diferentes técnicas de detecção de defeitos. Algumas vulnerabilidades são encontradas mais facilmente à partir de determinadas técnicas, e, em contrapartida, alguns tipos de defeitos dificilmente são encontrados por determinadas técnicas \cite{harvard}. Se os objetivos da análise da ferramenta são conhecidos previamente, facilita-se a seleção de ferramentas candidatas à análise sem a necessidade de avaliar ferramentas que provavelmente não atenderão aos critérios de seleção (Por exemplo, uma ferramenta de análise puramente léxica dificilmente passaria em critérios definidos para uma ferramenta de análise correta ou completa para determinada vulnerabilidade, dada à alta quantidade de falsos positivos e a presença de falsos negativos\footnote{Uma análise correta não pode conter falsos negativos}, como mencionado em \cite{harvard} quanto à capacidade das mesmas de detectar defeitos relacionados a \textit{buffer overflows}).
+
+Definidos os objetivos centrais a serem alcançados com a análise estática de código-fonte, devem-se então definir os \textbf{critérios} a serem alcançado pelas especificações da ferramenta e/ou resultados de sua análise. Estes devem ser levantados baseados nos objetivos da análise e, quando necessário, quantificados, selecionando-se assim, métricas relevantes que auxiliem no atendimento dos objetivos da análise.
+
+Pode ser interessante dividir os critérios em duas categorias distintas: pré-condições e pós-condições, de modo a clarificar quais os critérios para seleção de ferramentas a serem avaliadas e quais os critério para a que uma ferramenta submetida à metodologia seja aprovada e/ou selecionada. Note que esta metodologia também pode ser utilizada para fins comparativos, de modo que pós condições não se fazem necessárias.
+
+\textbf{Pré condições:} Como pré-condições, pode-se definir o tipo de ferramenta a ser avaliada, quais as técnicas podem ou não ser utilizadas pela mesma, o tipo de defeitos que a mesma se propõe a detectar, pode-se restringir a arquitetura da ferramenta, as plataformas que a mesma suporta, quais linguagens ela é capaz de analizar, etc.
+
+\textbf{Pós condições:} Como pós-condições, podem-se exigir determinados tipos de informação do relatório emitido pela ferramenta, como mapeamento de defeitos com CWE quando pertinente, métricas a serem atendidas, resultados mínimos esperados em relação a tais métricas (quando a análise não for feita para fins de comparação entre ferramentas), etc.
+
+Devem ser selecionadas métricas significativas para a avaliação da ferramenta, de modo a caracterizar um perfil para o relatório final da mesma. Com métricas relevantes, é possivel apontar, de forma mais clara, quais os pontos fortes e fracos de determinada ferramenta \cite{nsa}.
+
+Os conceitos de falso positivo e falso negativo são universais, ou seja, independentes do tipo de ferramenta ou da metodologia empregada para a análise. Sendo assim, é interessante que tais conceitos sejam incorporados nas métricas desenvolvidas e/ou selecionadas.
+
+Chamaremos de $C$, o conjunto de critérios de avaliação elaborados nesta atividade.
+
+\subsection{Eleger ferramentas candidatas}
+
+Esta atividade depende da natureza da avaliação a ser realizada, dado que tal avaliação pode ser realizada por uma empresa que lançou um edital para contratação de ferramenta de análise estática, de modo que fornecedores das ferramentas podem precisar inscrever a ferramenta para que a mesma possa participar do processo de seleção, uma pesquisa acadêmica, de modo que o pesquisador reuniria várias ferramentas para fins de comparação ou qualquer outro quadro onde seja necessária a avaliação de programas para análise estática. Ainda deve-se levar em consideração a licença da ferramenta, visto que uma ferramenta proprietária não estaria disponível para análise sem que se adquirisse sua licença ou após algum tipo de negociação com sua fornecedora. Em \cite{pascal} propõe-se que há uma desvantagem para ferramentas de licenças Livres quando submetidas a processos de avaliação, visto que vendedores de ferramentas proprietárias têm poder de negociação em relação aos critérios de seleção e todo o processo de avaliação, dado que podem negociar a participação ou não de sua ferramenta no processo, seja por concessão da licença ou por execução dos ensaios nos servidores da própria empresa, como acontece em \cite{sate_iv}.
+
+Independente da natureza da avaliação, deve haver um conjunto de ferramentas pré-candidatas à avaliação. Estas devem ser submetidas às pré-condições estabelecidas nos critérios de avaliação e, caso aprovadas nos mesmos, compor o conjunto de ferramentas candidatas às próximas etapas da avaliação.
+
+Sendo assim, definiremos como ferramenta candidata, o conjunto de ferramentas submetidas e aprovadas às pré-condições dos critérios de avaliação, considerando-se que há intenção de submeter tal ferramenta ao processo de avaliação descrito. À este conjunto de ferramentas, chamaremos de $F$.
+
+\subsection{Definir um conjunto de casos de teste}
+
+Como mencionado anteriormente, existem duas vertentes para a seleção de suítes de testes para avaliação de ferramentas de análise estática: a primeira delas diz que os casos de teste devem ser pontuais, focando defeitos específicas, de modo a não confundir a ferramenta de análise estática, provendo um julgamento justo da mesma, além de  evitar a inserção de defeitos não intencionais, que podem esconder o defeito que deveria de fato ser encontrado, levando também ao mau julgamento da ferramenta \cite{pascal}. A outra vertente, pelo contrário, defende que a suite de testes deve ser composta por software real (de produção), com possíveis alterações em pontos específicos e conhecidos,  onde serão inseridos os defeitos a serem testados  pelas ferramentas, dado que assim a confiabilidade de que a ferramenta detectará tais defeitos em software de produção  é maior \cite{harvard}.
+
+Independente de qual dos tipos de casos de testes forem utilizados para a avaliação, é fundamental que os pontos defeituosos do código sejam bem definidos para que ao fim da avaliação não fiquem dúvidas de onde a ferramenta relatou defeitos corretamente e onde a mesma cometeu erros de falsos positivos ou falsos negativos.
+Uma sugestão para suíte de testes sintética para análise em C ou Java é o Juliet \cite{juliet}, criado pelo CAS, da NSA, e publicado pelo NIST no SARD, diponível em \url{http://samate.nist.gov/SARD/testsuite.php}. Atualmente o Juliet e utilizado pela NSA em sua própria metodologia de avaliação de ferramentas \cite{nsa} e pelo NIST, nas avaliações conduzidas pelo SATE \cite{sate_iv}. Note que e interessante que se crie um conjunto de casos de teste de referência para avaliação de ferramentas de análise estática. Embora o Juliet seja uma suíte de testes consistente, apresenta diversos problemas  \cite{pascal}, \cite{juliet} e pode ser substituida.
+Ao conjunto de casos de testes aqui selecionados, chamaremos de $S$.
+
+\subsection{Definir linguagem comum para reportar defeitos}
+
+Ferramentas de análise estática diferentes geram relatórios finais de formas e em linguagens diferentes \cite{nsa}, de modo que é conveniente que se exportem os resultados das análises para um resultado comum, e que se mapeiem, também para a mesma linguagem comum, os defeitos conhecidos da suíte de testes utilizada. Deste modo realizar comparações para verificação de positivos, falsos positivos e falsos negativos gerados pela ferramenta se torna tarefa trivial. Em \cite{nsa}, o autor menciona a existência de um formato de dados comum para tais fins, porem não dá nenhum detalhe a respeito do mesmo. Em \cite{harvard}, o autor define um modelo de dados e utiliza de um Sistema Gerenciador de Banco de Dados para armazenar tanto as informações da suíte de testes quanto as informações dos relatórios das ferramentas, realizando \textit{queries} para fins de comparação. O NIST não utiliza de nenhum padrão para tais dados, mas realiza esta etapa de acordo com o que for mais conveniente para cada tipo de análise, como pode-se perceber em \cite{sate_iv} e como fora realizado ao longo do SATE V\footnote{Relatórios ainda não publicados, dados referentes ao SATE V podem ser encontrados em \url{http://samate.nist.gov/SATE5.html}}, onde para algumas análises exportaram-se os dados para SQL e em outras para formatos XML. Por fim, o grupo de interesse em análise estática do Projeto Fedora desenvolveu uma linguagem XML para este fim, bem como um módulo em python para auxiliar desenvolvedores e pesquisadores a exportarem seus dados para tal formato. O software e a definição da linguagem podem ser encontrados em \url{https://github.com/fedora-static-analysis/firehose}.
+
+Independente do formato ou linguagem utilizados, é importante que se defina, nesta atividade, uma linguagem comum para relatar defeitos.
+
+Além de uma notação para reportar defeitos, pode ser interessante também que, para cada ferramenta que atende às pré-condições dos critérios definidos, determinar a capacidade de detecção de defeitos da ferramenta (ou a combinação de todas ou de combinações específicas, em caso de avaliação de combinações de ferramentas). Para tal, deve haver uma notação comum para defeitos de software.  Uma opção relevante para esta notação são as CWE do  MITRE\footnote{\url{https://cwe.mitre.org/}}, embora haja grandes dificuldades em mapear relatórios de ferramentas de análise estática com as CWE, dado que sua definição é falha em alguns aspectos, abrindo espaços para interpretações ambíguas \cite{yan}, ainda assim, é conveniente, para fins de comparação de defeitos, que exista notação similar. Considere determinada situação onde um caso de testes apresenta o seguinte trecho de código:
+\begin{lstlisting}[language=C, title=cwe120.c]
+char last_name[20];
+printf ("Enter your last name: ");
+scanf ("%s", last_name);
+/* trecho retirado da definição da CWE 120 disponivel em http://cwe.mitre.org/data/definitions/120.html */
+\end{lstlisting}
+Note que, se \lstinline{last_name} for maior que 20 vezes \lstinline{sizeof(char)}, o buffer seria excedido, caracterizando um buffer overflow. Sabendo disso, uma linguagem comum, definida em YAML\footnote{\url{http://yaml.org/}}, poderia conter:
+\begin{lstlisting}
+arquivo: teste.c
+linha: 3
+defeito: Buffer Overflow
+\end{lstlisting}
+
+Suponha que uma ferramenta de análise estática tenha detectado o defeito, e reportado da seguinte maneira:
+\begin{lstlisting}
+Defeito encontrado em teste.c:3, "scanf ("%s", last_name);", uso indevido de scanf para entrada de last_name.
+\end{lstlisting}
+e com um \textit{parser}, traduza-se o defeito encontrado para:
+\begin{lstlisting}
+arquivo: teste.c
+linha: 3
+defeito: uso indevido de scanf
+\end{lstlisting}
+Ao se compararem os relatórios acima manualmente, é possivel inferir que tratam do mesmo defeito, porém existiria neste caso um esforço manual grande para que se comparem todos os defeitos do código com aqueles apontados pela ferramenta. Uma opção seria comparar apenas os arquivos e as linhas para um caso de teste contendo apenas um defeito por arquivo, mas ainda assim haveria a necessidade de inspeção manual, dado que algumas ferramentas podem alertar o defeito na hora de escrita no buffer e outras apenas no momento em que o buffer for utilizado.
+
+Ao se adotar uma notação comum para os defeitos, como as CWE, dado que exista uma linguagem comum para relatar defeitos, pode-se ter, para ambos os casos:
+\begin{lstlisting}
+arquivo: teste.c
+linha: 3
+defeito: CWE 120
+\end{lstlisting}
+Para tal pode-se analisar todas as possíveis saídas da ferramenta de análise estatica (em sua documentação, quando presente) e mapeá-las para a notação comum. Note que algumas suítes de teste, como o Juliet e o STONESOUP, separam seus defeitos por CWE, facilitando parte do trabalho descrito.
+
+Nesta atividade, deve-se definir uma linguagem comum, e possivelmente uma notação para relatar defeitos, de modo que, posteriormente os defeitos conhecidos da suite de testes e os defeitos reportados pela ferramenta a ser avaliada sejam mapeados em tais linguagem e notação (quando presente), facilitando análises posteriores. Ao definir-se tal linguagem, deve-se considerar os objetivos, critérios e métricas selecionadas para a avaliação.
+
+À linguagem comum para relatórios de defeitos, chamaremos de $L$.
+
+\subsection{Traduzir casos de teste para linguagem comum}
+
+Nesta atividade, devem-se representar os defeitos conhecidos presentes na suíte de testes $S$ na linguagem $L$ definida anteriormente.
+
+Temos assim, todos os defeitos de $S$ representados em $L$, ou $L(S)$.
+
+Se a suíte de testes utilizada apresentar as caracteristicas descritas em \cite{nsa} e \cite{harvard}, onde um caso de testes apresenta um trecho de código com um defeito e em seguida o mesmo trecho de código sem o defeito, pode ser interessante mapear os trechos de codigo não defeituosos para a linguagem, de modo a medir a taxa de confusão da ferramenta analisada, por exemplo, nestes trechos de um caso de teste extraído do Juliet temos:
+\lstinputlisting[language=C, firstline=22, firstnumber=22, lastline=70]{dados/CWE190_Integer_Overflow__char_max_add_01.c}
+$L(S)$ poderia definir:
+\begin{lstlisting}
+arquivo: testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__char_max_add_01.c
+linha: 30
+defeito: CWE 120
+presente: sim
+\end{lstlisting}
+e
+\begin{lstlisting}
+arquivo: testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__char_max_add_01.c
+linha: 48
+defeito: CWE 120
+presente: não
+\end{lstlisting}
+e
+\begin{lstlisting}
+arquivo: testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__char_max_add_01.c
+linha: 63
+defeito: CWE 120
+presente: não
+\end{lstlisting}
+
+Deste modo, podem-se utilizar métricas para medir a taxa de confusão da ferramenta, como descrito em \cite{nsa}.
+
+\subsection{Selecionar subconjunto de casos de teste para análise}
+
+Como relatado por \cite{seatbelts} em sua experiência com o SATE, contar bugs é uma tarefa complexa que na maioria das vezes exige grande esforço manual, dado o grande número e diversidade de \textit{warnings} gerados pelas ferramentas de análise estática. Deste modo, como proposto no última edição do SATE\footnote{\url{http://samate.nist.gov/SATE5.html}}, é interessante que se selecione, para cada uma das ferramentas avaliadas, um subconjunto aleatório de casos de testes da suíte de testes utilizada para a avaliação.
+
+Sendo assim, para cada uma das ferramentas $f$ contidas em $F$ a serem avaliadas,  deve ser extraído um conjunto de casos de testes aleatório de $S$. A tal subconjunto de $S$ daremos o nome de $R(f)$. Algumas vezes, $R(f)$ pode depender das especificações de $f$, quando permitido pelos critérios, dado que tas especificações podem delimitar a análise da ferramenta à detecção de um subconjunto específico de $S$, por exemplo, $S$ é um conjunto de casos de teste para as CWE 120, 122 e 123, porém $f$ apenas detecta defeitos relacionados à CWE 122. Seria interessante, desde que permitido pelos critérios e objetivos da análise, que $R(f)$ seja extraído de um subconjunto de $S$ que contém apenas os casos de teste relacionados à CWE 122.
+
+\subsection{Realizar análise}
+
+Para cada ferramenta $f$ em $F$, deve-se realizar análise em seu subconjunto de $S$, $R(f)$, obendo-se como saída, um relatório de defeitos reportados, em linguagem específica da ferramenta, sobre os casos de teste de $R(f)$.
+
+Chamaremos assim, o relatório de defeitos reportados pela ferramenta $f$ sobre seu conjunto de casos de teste a serem analisados $R(f)$ de $O(R(f), f)$, que pode ser encurtado para $O(f)$.
+
+\subsection{Traduzir resultado da análise para linguagem comum}
+
+Para cada ferramenta $f$, traduzir sua saída $O(R(f), f)$ para a linguagem comum $L$. Resultando assim em um relatório de erros de $f$ sobre o subconjunto $R(f)$ de $S$ na linguagem ou notação $L$. Pondendo ser representado como $L(O(R(f), f))$ ou $L(O(f))$, que, também por fins estéticos, será reduzido para $L(f)$.
+
+\subsection{Comparar resultados da análise com defeitos dos casos de  teste}
+
+Seja $L(S)$ a representação na linguagem $L$ do conjunto de defeitos presentes nos casos de teste de $S$, temos que $L(R(f))$ é o subconjunto de $L(S)$ que contém apenas os defeitos de $S$ relevantes à análise realizada pela ferramenta $f$ em sua amostra de casos de testes $R(f)$.
+
+Deve-se então, para cada ferramenta $f$ em $F$, comparar $L(f)$ com $L(R(f))$. Temos nas \eqref{eq6}, \eqref{eq7} e \eqref{eq8}:
+\begin{equation}\label{eq6}
+  L(f) \cap L(R(f)) = P
+\end{equation}
+\begin{equation}\label{eq7}
+  L(f) - L(R(f)) = FN
+\end{equation}
+\begin{equation}\label{eq8}
+  L(R(f)) - L(f) = FP
+\end{equation}
+
+Outros dados devem ser extraidos, ainda nesta atividade, com base nos criterios e métricas utilizados na avaliação.
+
+\subsection{Analisar métricas e confrontar com critérios}
+
+Os dados obtidos na atividade anterior devem ser analisados e confrontados com os critérios da avaliação para cada ferramenta $f$ em $F$.
+
+\subsection{Apresentar resultados e/ou classificar ferramentas}
+
+Por fim, devem-se organizar os resultados e apresentar parecer final quanto às ferramentas avaliadas segundo os critérios apresentados.

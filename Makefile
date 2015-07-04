@@ -27,7 +27,7 @@ EDITAVEIS_FILES = $(addprefix $(EDITAVEIS_DIR)/, $(EDITAVEIS_SOURCES))
 CAPITULOS_DIR = capitulos
 CAPITULOS_SOURCES = 1-introducao.tex  2-fundamentacao_teorica.tex  \
 										3-metodologia.tex  4-metodologia_proposta.tex \
-										5-estudos_de_caso.tex 6-conclusoes.tex
+										5-exemplos_de_uso.tex 6-conclusoes.tex
 
 CAPITULOS_FILES = $(addprefix $(CAPITULOS_DIR)/, $(CAPITULOS_SOURCES))
 
@@ -46,6 +46,7 @@ all: clean
      
 $(TARGET): $(MAIN_FILE) $(SOURCES) bibliografia.bib
 	$(LATEX) $(MAIN_FILE) $(SOURCES)
+	@makeindex tcc
 	$(BIBTEX) $(AUX_FILE)
 	$(LATEX) $(MAIN_FILE) $(SOURCES)
 	$(LATEX) $(MAIN_FILE) $(SOURCES)
@@ -55,7 +56,7 @@ $(TARGET): $(MAIN_FILE) $(SOURCES) bibliografia.bib
 
 clean:
 	rm -f *~ *.dvi *.ps *.backup *.aux *.log
-	rm -f *.lof *.lot *.bbl *.blg *.brf *.toc *.idx
+	rm -f *.lof *.lot *.bbl *.blg *.brf *.toc *.idx *.ind *.ilg
 	rm -f *.pdf *.lol
 	
 dist: clean

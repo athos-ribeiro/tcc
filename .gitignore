@@ -11,4 +11,6 @@
 *.lot
 *.ps
 *.toc
+*.ilg
+*.ind
 *.swp

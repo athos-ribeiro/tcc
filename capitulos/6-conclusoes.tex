@@ -1,1 +1,51 @@
+\chapter{Conclusões}\label{conclusoes}
+
+\section{Interpretação e pertinência da análise resultante}
+
+\subsection{Exemplo de Uso 1 - Avaliação de Ferramentas Livres}
+
+Três das ferramentas avaliadas, Cppcheck, RATS e Yasca, não mencionam a capacidade de detecção de loops infinitos, de modo que é compreensível a não detecção dos defeitos a elas apresentados.  Já ferramenta Splint é a única que se apresenta explicitamente em sua documentação como capaz de detectar loops infinitos, porém não fora capaz de detectar o defeito em nenhum dos casos de teste. Uma lista de discussão da Universidade de Virgínia traz uma discussão a respeito da não detecção de loops infinitos\footnote{\url{http://www.cs.virginia.edu/pipermail/splint-discuss/2008-November/001248.html}} com esta ferramenta, algumas das justificativas para o que consideramos um Falso Negativo é que alguns deles não se tratam de loops infinitos, dado que em um \textit{loop} como
+\begin{lstlisting}[language=C]
+int i = 0;
+for(i = 0; i >= 0; i++)
+{
+  printf("Seria eu um loop infinito?\n");
+}
+\end{lstlisting}
+a variável \lstinline{i} alcançaria o valor máximo de um inteiro para a arquitetura e haveria um \textit{wraparround}, de modo que a mesma assumiria um valor negativo e o \textit{loop} terminaria. Porém a ocorrência do \textit{wraparround} poderia ser influenciada pelo compilador, de modo que o \textit{loop} passa a ser indefinido, se mostrando uma instância do Problema da Parada (\textit{halting problem}) \cite{turing}. Porém, nos casos de teste analisados, existem estruturas da forma
+\begin{lstlisting}[language=C]
+for(;;)
+{
+  printf("Embora eu não saiba, sou um loop infinito!");
+}
+\end{lstlisting}
+que são, indiscutivelmente, \textit{loops} infinitos\footnote{Estes podem ser detectados pelo compilador e não compilados, porém, nestes casos o compilador não deixa de ser um programa de análise estática.}.
+
+À partir do Teorema de Rice \cite{rice}, pode-se concluir que uma ferramenta de análise estática pode não ser capaz de decidir se um trecho de código é defeituoso ou não, o que pode ser o caso de loops infinitos, quando seu resultado é indeterminado.
+
+Seria interessante obter os resultados das análises de ferramentas proprietárias para os mesmos casos de testes, visto que as mesmas muitas vezes utilizam os casos de teste do Juliet para vender sua cobertura de CWE, de modo que possivelmente os vendedores optariam por apontar tais \textit{loops} infinitos em casos de indecisão.
+
+\subsection{Exemplo de Uso 2 - Avaliação de Análise Correta}
+
+No segundo exemplo de uso houveram falhas na calibração da ferramenta, como apresentado nos resultados da avaliação. Dada a natureza da análise de ferramentas de analise correta, sua calibração torna-se complexa, o que justifica a necessidade da presença dos desenvolvedores das ferramentas durante avaliações oficiais.
+
+Note que $S$ é diferente do $S$ utilizado na Ockham criteria, portanto os numeros sao diferentes\footnote{ao longo da Ockam Criteria utilizava-se um $S$ com casos de testes de diversas CWE diferentes para a ferramenta.}.
+
+Independente dos resultados para a ferramenta avaliada, a avaliação foi bem sucedida no que tange a aplicação da metodologia apresentada neste trabalho, com suas etapas bem definidas, o que viabilizou um fluxo de trabalho simples e replicável. 
+
+\section{Aplicabilidade e pertinência da metodologia}
+
+A metodologia precisa ser amadurecida, mas é uma formalização e generalização de como fora realizado o SATE V\footnote{\url{http://samate.nist.gov/SATE.html}} do NIST, que também passa por processo de amadurecimento constante e iterativo.
+
+Os exemplos de uso apresentados mostram a facilidade de aplicação da metodologia, de modo que qualquer instituição pode iniciar trabalhos de pesquisa relacionados à análise estática com foco em segurança, o que, como mostrado em \nameref{referencial_teorico}, aparentam, ao menos para pesquisas com resultados abertos, estarem centralizadas apenas em órgãos do governo dos Estados Unidos da América, podendo-se então afirmar que os resultados de tais pesquisas atendem, primeiramente, aos interesses do mesmo. Além disso, a metodologia também pode ser utilizada por desenvolvedores de ferramentas de análise estática para fins comerciais\footnote{Algumas ferramentas de análise estática incluem números à respeito de suas análises em suítes de testes abertas como o Juliet} ou simplesmente para aumentar a cobertura de suas análises.
+
+\section{Trabalhos futuros}
+
+A metodoligia aqui apresentada deve ser utilizada e testada inúmeras vezes de modo a, iterativamente, ser aperfeiçoada.
+
+Não foram encontradas linhas de pesquisas no Brasil que envolvam avaliações ou métodos de seleção de ferramentas de análise estática com foco em segurança, o que pode ser relevante tanto para a Inteligência do governo quanto para pesquisadores e desenvolvedores de ferramentas. Sendo assim, continuar os estudos quanto à avaliação de ferramentas e à análise com foco em segurança pode ser interessante tanto para o governo brasileiro quanto para o mercado.
+
+Embora existam suítes de testes amplamente utilizadas pelo mercado, como é o caso do Juliet, e definiçoes de defeitos também aceitas pelo mercado e academia, como as CWE, não existe uma linguagem comum para relatórios de defeitos que seja aceita de forma uniforme pelo mercado. O Fedora Firehose, mencionado em \nameref{referencial_teorico}, está sendo utilizado por diferentes projetos, como é o caso do Debile do Debian e pode vir a preencher esta lacuna no mercado. Não foram encontrados porém, estudos que levantem todas as necessidades comuns à relatórios de análise estática.
+
+Para fins de comparação, pode-se desenvolver também uma base de conhecimento com resultados de análises de  ferramentas de licenças livres sobre suítes de testes aceitas pelo mercado, como o Juliet, em uma linguagem comum (como o Firehose). Com tais bases para ferramentas livres e com uma suite de testes como o Juliet também traduzida para uma linguagem comum, facilita-se a adoção de tal linguagem pelo mercado e academia, caso os mesmos se interessem em comparar seus resultados com os resultados apresentados pela base de conhecimento, além é claro de terem o trabalho de tradução da suite de testes para uma linguagem comum à dos relatórios de suas ferramentas.
 

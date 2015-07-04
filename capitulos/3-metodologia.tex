@@ -1,1 +1,23 @@
+\chapter{Metodologia}\label{metodologia}
+
+\section{Levantamento bibliográfico}
+
+O presente trabalho utilizou como base  a lista de bibliografias proposta pelo SAMATE, disponível em \url{http://samate.nist.gov/index.php/Bibliography.html}. Quando necessário, as referências dos artigos ou textos utilizados foram consultadas. Também foram utilizadas as bibliografias relacionadas à ferramenta de análise estática Frama-C\footnote{\url{http://frama-c.com/}} dado que tal ferramenta é fruto de pesquisas do Instituto nacional Francês para Ciência da Computação e Matemática Aplicada, o Inria\footnote{\url{http://www.inria.fr}} e o CEA LIST\footnote{\url{http://www-list.cea.fr}}, instituto de pesquisa, também francês, especializado em design de sistemas digitais, de modo que há diversas publicações relacionadas à construção da ferramenta, tecnicas de análise estática e outros artigos relevates, todos disponíveis em \url{https://bts.frama-c.com/dokuwiki/doku.php?id=mantis:frama-c:publications}.
+
+Além das duas fontes mencionadas, também foram consultados três autores comumente citados em trabalhos relacionados à análise estática, de modo que se faz importante a compreensão de suas obras para melhor imersão em tópicos relacionados (à análise estática). São eles: os trabalhos de Alan Turing que dizem respeito às máquinas de Turing e ao Problema de Parada, os trabalho de Henry Gordon Rice quando referentes ao Teorema de Rice e por fim, Kurt Godel e seus Teoremas de Incompletude.
+
+\section{Elaboração do nucleo da proposta}
+
+A proposta fora elaborada a partir das experiências do autor com as avaliações de ferramentas referentes ao SATE V ao longo do ano de 2014, em especial à Ockham Criteria e dos estudos das metodologias aplicadas por \cite{harvard} e \cite{nsa}, sendo que o trabalho aqui apresentado trata-se de uma proposta de generalização dos casos estudados.
+
+\section{Refinamento da proposta e definição das etapas}
+
+%TODO: arrumar referencia com imagem
+As etapas foram definidas através do desenvolvimento iterativo do fluxograma apresentado na Seção \nameref{metodologia_proposta::visao_geral} do Capítulo \nameref{metodologia_proposta} e refinadas através de análises de grafos, onde pôde-se observar a dependência entre cada uma das atividades do processo para que as mesmas fossem ordenadas e possívelmente paralelizadas de forma correta. Embora os grafos utilizados não sejam apresentados ao longo do trabalho apresenta-se aqui um exemplo de como os resultados mencionados foram alcançados %TODO: INCLUIR IMAGEM COM EXEMPLO DE GRAFO PARA ORDENAÇAO DOS PROCESSOS
+
+\section{Aplicação da metodologia em estudos de caso}
+
+Para a aplicação da metodologia, buscou-se sempre trabalhar com software de licenças Livres, fosse para ferramentas de análise estatica, suites de teste ou ferramentas para auxiliar a extração e análise de resultados, de modo a melhor compreender as ferramentas utilizadas quando necessário e evitar quaisquer irregularidades relacionadas ao uso indevido de ferramentas\footnote{Algumas licensas não permitem que se investigue, por exemplo, a execução de uma ferramenta.}.
+
+Para as análiseses de resultados, utilizaram-se apenas algumas ferramentas do projeto GNU\footnote{\url{gnu.org}} como \textit{bash}, \textit{grep}, \textit{comm} e \textit{sort} dado que não são necessárias ferramentas mais sofisticadas ao se trabalhar com conjuntos\footnote{Note que as análises da metodologia aqui proposta tratam de manipulações de conjuntos} em formatos de texto.
 
