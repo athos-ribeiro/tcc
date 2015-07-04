@@ -120,7 +120,7 @@ O pacote Firehose está disponível em \url{https://github.com/fedora-static-ana
 
 \subsection{Suíte de testes em $L$: $L(S)$}
 
-Os defeitos presentes em Juliet são identificados através de comentários presentes nos proprios casos de teste. Para automatizar a geração de $L(S)$ para o Juliet, um programa de análise estática deveria ser escrito. Como se tratam de 6 arquivos curtos, $L(S)$ fora gerado manualmente e está disponivel no anexo \ref{apendice::ec1::LS}.
+Os defeitos presentes em Juliet são identificados através de comentários presentes nos proprios casos de teste. Para automatizar a geração de $L(S)$ para o Juliet, um programa de análise estática deveria ser escrito. Como se tratam de 6 arquivos curtos, $L(S)$ fora gerado manualmente e está disponivel no apêndice \nameref{apendice:eu1:LS}.
 
 \subsection{$f = Cppcheck$}
 
@@ -258,7 +258,7 @@ Dos 6 defeitos que existem em $R(f)$, a ferramenta Yasca não foi capaz de detec
 
 \subsection{Resultados de $F$}
 
-Nenhuma das ferramentas de $F$ foi capaz de detectar os defeitos de $S$, especificados em \nameref{anexo com firehose/juliet}
+Nenhuma das ferramentas de $F$ foi capaz de detectar os defeitos de $S$, especificados em \nameref{apendice com firehose/juliet}
 
 \section{Avaliação de Análise Correta}
 
@@ -314,14 +314,14 @@ $F = {Frama-C}$.
 
 \subsection{Suíte de testes $S$}
 
-Assim como no primeiro exemplo de uso, será utilizado como $S$, um subconjunto da suite de testes Juliet. Para evitar a pequena quantidade de casos de teste do primeiro exemplo de uso e selecionar uma CWE de análise de menor complexidade\footnote{Avaliar a análise de ferramentas para algumas CWE, como Heap Overflow, pode-se mostrar uma tarefa complexa, dado que exige profunda compreensão das especificações da linguagem para diferenciar positivos de falsos positivos relacionados à outros defeitos\footnote{Embora o Juliet apresente apenas 1 defeito por caso de teste, uma ferramenta pode apontar, por exemplo, um defeito relacionado à outra classe de fraquezas no mesmo ponto de entrada do defeito apresentado em um caso de testes, não gerando um positivo para o defeito relevante à análise}. Como avaliar a ferramenta não é o objetivo real deste estudo como explicitado nos Objetivos em \ref{Introdução}, optou-se por análises mais simples.}, os arquivos referentes à linguagem C para cada CWE no Juliet foram contados, de modo a obter-se uma lista com a quantidade de arquivos de código-fonte em linguagem C presentes no Juliet para cada CWE, o resultado se encontra no anexo\nameref{apendice::juliet_em_numeros_C}.
+Assim como no primeiro exemplo de uso, será utilizado como $S$, um subconjunto da suite de testes Juliet. Para evitar a pequena quantidade de casos de teste do primeiro exemplo de uso e selecionar uma CWE de análise de menor complexidade\footnote{Avaliar a análise de ferramentas para algumas CWE, como Heap Overflow, pode-se mostrar uma tarefa complexa, dado que exige profunda compreensão das especificações da linguagem para diferenciar positivos de falsos positivos relacionados à outros defeitos\footnote{Embora o Juliet apresente apenas 1 defeito por caso de teste, uma ferramenta pode apontar, por exemplo, um defeito relacionado à outra classe de fraquezas no mesmo ponto de entrada do defeito apresentado em um caso de testes, não gerando um positivo para o defeito relevante à análise}. Como avaliar a ferramenta não é o objetivo real deste estudo como explicitado nos Objetivos em \nameref{introducao}, optou-se por análises mais simples.}, os arquivos referentes à linguagem C para cada CWE no Juliet foram contados, de modo a obter-se uma lista com a quantidade de arquivos de código-fonte em linguagem C presentes no Juliet para cada CWE, o resultado se encontra no apêndice \nameref{apendice:juliet_em_numeros_C}.
 
 Os casos de teste referentes à \textit{CWE 369 - Divide by Zero} compõe uma quantidade de arquivos em linguagem C significativa (1008), além de terem sido utilizados na avaliação da Frama-C no SATE V. Note que os próprios desenvolvedores da Frama C selecionaram as CWE a serem incluídas nas análises e dado que a CWE 369 fora selecionada, um pode inferir que as funcionalidades de detecção de fraquezas relacionadas à mesma estão presentes. Deste modo, a suíte de testes $S$ poderia ser composta pelos casos de teste referentes à CWE 369 correspondentes à linguagem C, porém alguns casos de teste apenas chamam funções de outros casos de teste variando algum parâmetro.  A Frama-C detecta defeitos nas definições das funções e não no momento em que são chamadas, quando tratando de problemas com operações aritméticas binárias\footnote{segundo \cite{kernighan}, estas são +, -, *, / e \%.}, deste modo, apenas os casos de teste que contém de fato instâncias da CWE 369 definidas serão incluídos em $S$, de modo que  $S$ passa a ser composta apenas dos casos de teste presentes no subconjunto do Juliet CWE369 que contém marcações com referéncias à instâncias da CWE, ou seja, arquivos de código-fonte em linguagem C com o seguinte comentário:
   \lstinline{/* POTENTIAL FLAW: Possibly divide by zero */}.
 
   Os casos foram então selecionados para compor $S$, totalizando 684 casos de teste.
 
-  A lista de casos de teste que compõe a suite de testes S está disponivel em \nameref{anexo::ec2::S}
+  A lista de casos de teste que compõe a suite de testes S está disponivel em \nameref{apendice:eu2:S}
 
   \subsection{Linguagem de saída $L$}
 
@@ -338,7 +338,7 @@ Os casos de teste referentes à \textit{CWE 369 - Divide by Zero} compõe uma qu
 
   O comentário acima pode aparecer dentro de 2 grupos condicionais, sendo um referente à macro \lstinline{#OMITBAD} e outro referente à macro \lstinline{#OMITGOOD}, quando o comentário que marca a fraqueza aparece no grupo condicional \lstinline{#OMITBAD}, a linha seguinte apresenta um ponto de entrada para a CWE 369 com uma instância da fraqueza e quando o mesmo comentário aparece no grupo condicional \lstinline{#OMITGOOD}, a linha seguinte apresenta um ponto de entrada para a mesma CWE, porém com a fraqueza corrigida.
 
-  Considerando os fatos apresentados compomos $L(S)$ com os trechos de códigos de $S$ contendo instâncias da CWE 369. O arquivo completo pode ser observado em \nameref{anexo::ec2::LS}
+  Considerando os fatos apresentados compomos $L(S)$ com os trechos de códigos de $S$ contendo instâncias da CWE 369. O arquivo completo pode ser observado em \nameref{apendice:eu2:LS}
 
   \subsection{$f = Frama-C$}
   \subsubsection{Casos de teste para análise: Um subconjunto $R(f)$ de $S$}
@@ -356,7 +356,7 @@ Os casos de teste referentes à \textit{CWE 369 - Divide by Zero} compõe uma qu
 
   A Frama-C realiza análises complexas, considerando diferentes possibilidades na para a árvore de execução do programa. Isto requer que se analizem também as definições para as funções utilizadas, de modo que para se utilizar todo o potencial da ferramenta, definições para as funções de bibliotecas de sistemas utilizadas nos casos de teste devem ser fornecidas. Dada a complexidade adicional, este passo não foi realizado e apresentaram impacto nos resultados finais desta análise.
 
-  A saída para o relatório da Frama-C se encontra em \ref{apendice::ec2::framac_raw_report}.
+  A saída para o relatório da Frama-C se encontra em \nameref{apendice:eu2:framac_raw_report}.
 
   \subsubsection{Análise traduzida para $L$: $L(f)$}
 
@@ -364,17 +364,17 @@ Os casos de teste referentes à \textit{CWE 369 - Divide by Zero} compõe uma qu
   \lstinline{/* POTENTIAL FLAW: Possibly divide by zero */}
   ou \textit{warnings} que explicitamente indicassem problemas de divisão por zero, em qualquer parte do código.
 
-  $L(f)$ para esta análise pode ser consultado em \ref{apendice::ec2::Lf}.
+  $L(f)$ para esta análise pode ser consultado em \nameref{apendice:eu2:Lf}.
 
   \subsubsection{Avaliando a análise: $L(S)$ vs $L(f)$}
 
   Comparando $L(S)$ com $L(f)$ temos:
 
-  As entradas presentes em ambos os conjuntos, ou seja, $L(S) \cap L(f)$ se referem aos acertos da ferramenta, ou seja, os positivos. Estes somaram 434 fraquezas, detalhadas em \ref{apendice::ec2::positivo}.
+  As entradas presentes em ambos os conjuntos, ou seja, $L(S) \cap L(f)$ se referem aos acertos da ferramenta, ou seja, os positivos. Estes somaram 434 fraquezas, detalhadas em \nameref{apendice:eu2:positivo}.
 
-  As entradas presentes somente em $L(f)$, ou seja, $L(f) - L(S)$, são indicações erradas da ferramenta de instâncias da CWE 369, os falsos positivos. Estes somaram 432 \textit{warnings}, detalhados em \ref{apendice::ec2::falso_positivo}
+  As entradas presentes somente em $L(f)$, ou seja, $L(f) - L(S)$, são indicações erradas da ferramenta de instâncias da CWE 369, os falsos positivos. Estes somaram 432 \textit{warnings}, detalhados em \nameref{apendice:eu2:falso_positivo}
 
-  Por fim, as entradas presentes somente em $L(S)$, ou seja, $L(S) - L(f)$, são as instâncias da CWE 369 que a ferramenta não foi capaz de detectar, ou seja, os falsos negativos. Estes somaram 250 entradas, detalhadas em \ref{apendice::ec2::falso_negativo}
+  Por fim, as entradas presentes somente em $L(S)$, ou seja, $L(S) - L(f)$, são as instâncias da CWE 369 que a ferramenta não foi capaz de detectar, ou seja, os falsos negativos. Estes somaram 250 entradas, detalhadas em \nameref{apendice:eu2:falso_negativo}
 
   \subsection{Resultados}
   \begin{itemize}
@@ -387,7 +387,7 @@ Os casos de teste referentes à \textit{CWE 369 - Divide by Zero} compõe uma qu
       \lstinputlisting[language=C, firstline=23, firstnumber=23, lastline=31]{dados/CWE369_Divide_by_Zero__int_fscanf_modulo_01.c}
       onde podemos perceber que sem uma definição da função \lstinline{fscanf}, a ferramenta não pode assumir que o valor do inteiro data é alterado, de modo que a ferramenta realiza um unico teste onde data tem o valor $-1$ e não uma faixa variando do menor ao maior inteiro da arquitetura, que é o que acontece de fato, de modo que o valor pode receber 0, caracterizando instância da CWE 369. 
 
-      Para não penalizar a ferramenta dada a ausência das definicões das funções de bibliotecas do sistema, que foram alertadas pela ferramenta em seu relatório final em \ref{apendice::ec2::framac_raw_report}, não serão considerados os falsos negativos referentes a trechos dependentes de tais funções, de modo que os resultados para a Frama-C passam a ser
+      Para não penalizar a ferramenta dada a ausência das definicões das funções de bibliotecas do sistema, que foram alertadas pela ferramenta em seu relatório final em \nameref{apendice:eu2:framac_raw_report}, não serão considerados os falsos negativos referentes a trechos dependentes de tais funções, de modo que os resultados para a Frama-C passam a ser
       \begin{itemize}
         \item Positivos: 434
         \item Falsos Positivos: 432

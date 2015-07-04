@@ -2,7 +2,7 @@
 
 Este capitulo contextualiza o presente trabalho, apresentando definições de conceitos que serão utilizados em outros capítulos. Inicialmente define-se análise estática de código fonte e apresentam-se exemplos métricas para um contexto de segurança. Em seguida, são apresentadas algumas ferramentas para análise estática, bem como a definição exemplos de bases de dados de vulnerabilidades. Por fim, discutem-se trabalhos relacionados à análise estática com foco em segurança e avaliações deste tipo de ferramenta.
 
-\section{Análise estática de código}\label{fundamentacao_teorica::analise_estatica_de_codigo}
+\section{Análise estática de código}\label{fundamentacao_teorica:analise_estatica_de_codigo}
 
 Metade dos defeitos de segurança de software são introduzidos à nível de código-fonte \cite{vadim}. Em tal contexto, software pode ser verificado atraves da análise dinâmica ou da análise estática \cite{concolic}.
 
@@ -42,7 +42,7 @@ TD = P + FN,
 \end{equation}
   onde $TD$ é o número de Trechos Defeituosos, $P$ o número de Positivos e $FN$ o número de Falsos Negativos.
 
-  No contexto da Ockham Criteria do SATE V do NIST, considera-se um defeito apenas se o mesmo for uma fraqueza, ou seja, um defeito só é considerado quando formalizado de acordo com o CWE, como mencionado   na Seção \nameref{fundamentacao_teorica::analise_estatica_de_codigo} do presente trabalho. Isso implica que a Equação \eqref{eq1} pode não ser verdadeira, dado que podem existir defeitos reportados pela ferramenta que não estejam mapeados em forma de CWE, ou ainda, que estejam sujeitos à interpretação das CWE, que como mencionado em \cite{yan} e notado ao longo dos trabalhos  da Ockham Criteria, nem sempre são definidas com precisão.
+  No contexto da Ockham Criteria do SATE V do NIST, considera-se um defeito apenas se o mesmo for uma fraqueza, ou seja, um defeito só é considerado quando formalizado de acordo com o CWE, como mencionado   na Seção \nameref{fundamentacao_teorica:analise_estatica_de_codigo} do presente trabalho. Isso implica que a Equação \eqref{eq1} pode não ser verdadeira, dado que podem existir defeitos reportados pela ferramenta que não estejam mapeados em forma de CWE, ou ainda, que estejam sujeitos à interpretação das CWE, que como mencionado em \cite{yan} e notado ao longo dos trabalhos  da Ockham Criteria, nem sempre são definidas com precisão.
 
   Precisão: Taxa de defeitos reportados para a quantidade total de defeitos presentes no código analisado.  Ela pode ser representada pela Equação \eqref{eq2},
 \begin{equation}\label{eq2}
@@ -76,7 +76,7 @@ F_s = 2*[(P * C_r) / (P + C_r)]
 
   onde $F_s$ é o F-score, $P$ a precisão e $C_r$ a Corretude.
 
-  Existem outras métricas que são relevantes apenas para análises que utilizem suítes de teste como a proposta pelo CAS em \cite{nsa}, também descrita em \cite{juliet}. A mesma se trata de uma suíte de testes composta de casos de teste artificiais ou sintéticos, que são definidos posteriormente, na Seção \nameref{fundamentacao_teorica::bases_de_testes_de_vulnerabilidades}.
+  Existem outras métricas que são relevantes apenas para análises que utilizem suítes de teste como a proposta pelo CAS em \cite{nsa}, também descrita em \cite{juliet}. A mesma se trata de uma suíte de testes composta de casos de teste artificiais ou sintéticos, que são definidos posteriormente, na Seção \nameref{fundamentacao_teorica:bases_de_testes_de_vulnerabilidades}.
 
   \section{Ferramentas de análise estática de código}
 
@@ -85,7 +85,7 @@ F_s = 2*[(P * C_r) / (P + C_r)]
   Note que compiladores que indicam \textit{warnings} ao longo do processo de compilação estão indicando possíveis defeitos que podem levar a vulnerabilidades, de modo que tais compiladores podem ser considerados ferramentas de análise estática no presente contexto.
 
 
-  \section{Bases de Testes de Vulnerabilidades}\label{fundamentacao_teorica::bases_de_testes_de_vulnerabilidade}
+  \section{Bases de Testes de Vulnerabilidades}\label{fundamentacao_teorica:bases_de_testes_de_vulnerabilidade}
 
   Para que se possam avaliar ferramentas de análise estática de código fonte, é necessário que se possua o software à disposição para que as ferramentas sob avaliação possam analisá-lo \cite{nsa}. Ao software utilizado para avaliação de ferramentas de análise estática dá-se o nome de \textbf{caso de teste}. Um conjunto de casos de teste é chamado de \textbf{suíte de testes}.
 
