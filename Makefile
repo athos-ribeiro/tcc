@@ -46,7 +46,7 @@ all: clean
      
 $(TARGET): $(MAIN_FILE) $(SOURCES) bibliografia.bib
 	$(LATEX) $(MAIN_FILE) $(SOURCES)
-	@makeindex tcc
+	@makeindex tcc.idx
 	$(BIBTEX) $(AUX_FILE)
 	$(LATEX) $(MAIN_FILE) $(SOURCES)
 	$(LATEX) $(MAIN_FILE) $(SOURCES)
