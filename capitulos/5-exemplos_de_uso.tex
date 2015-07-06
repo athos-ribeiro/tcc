@@ -101,11 +101,19 @@ Dos 6 defeitos que existem em $R(f)$, a ferramenta Cppcheck não foi capaz de de
 
 \subsubsection{Resultados de $f$}
 
-\begin{itemize}
-  \item 0 Positivos;
-  \item 0 Falsos Positivos;
-  \item 6 Falsos Negativos.
-\end{itemize}
+A tabela \ref{tabela_cppcheck} apresenta os resultados para a ferramenta Cppcheck.
+\begin{table}[h]
+  \centering
+\begin{tabular}{| l | l |}
+  \hline
+  Positivos & 0 \\ \hline
+  Falsos Positivos & 0 \\ \hline
+  Falsos Negativos & 6 \\
+  \hline
+\end{tabular}
+\caption{Resultados: Cppcheck}
+\label{tabela_cppcheck}
+\end{table}
 \subsection{$f = RATS$}
 
 A ferramenta fora instalada em sua versão 2.4 através do pacote presente no repositório oficial da distribuição GNU/Linux Fedora 22.
@@ -134,11 +142,19 @@ Dos 6 defeitos que existem em $R(f)$, a ferramenta RATS não foi capaz de detect
 
 \subsubsection{Resultados de $f$}
 
-\begin{itemize}
-  \item 0 Positivos;
-  \item 0 Falsos Positivos;
-  \item 6 Falsos Negativos.
-\end{itemize}
+A tabela \ref{tabela_rats} apresenta os resultados para a ferramenta RATS.
+\begin{table}[h]
+  \centering
+\begin{tabular}{| l | l |}
+  \hline
+  Positivos & 0 \\ \hline
+  Falsos Positivos & 0 \\ \hline
+  Falsos Negativos & 6 \\
+  \hline
+\end{tabular}
+\caption{Resultados: RATS}
+\label{tabela_rats}
+\end{table}
 
 \subsection{$f = Splint$}
 
@@ -170,11 +186,19 @@ Dos 6 defeitos que existem em $R(f)$, a ferramenta Splint não foi capaz de dete
 
 \subsubsection{Resultados de $f$}
 
-\begin{itemize}
-  \item 0 Positivos;
-  \item 0 Falsos Positivos;
-  \item 6 Falsos Negativos.
-\end{itemize}
+A tabela \ref{tabela_splint} apresenta os resultados para a ferramenta Splint.
+\begin{table}[h]
+  \centering
+\begin{tabular}{| l | l |}
+  \hline
+  Positivos & 0 \\ \hline
+  Falsos Positivos & 0 \\ \hline
+  Falsos Negativos & 6 \\
+  \hline
+\end{tabular}
+\caption{Resultados: Splint}
+\label{tabela_splint}
+\end{table}
 
 \subsection{$f = Yasca$}
 
@@ -203,11 +227,19 @@ Dos 6 defeitos que existem em $R(f)$, a ferramenta Yasca não foi capaz de detec
 
 \subsubsection{Resultados de $f$}
 
-\begin{itemize}
-  \item 0 Positivos;
-  \item 0 Falsos Positivos;
-  \item 6 Falsos Negativos.
-\end{itemize}
+A tabela \ref{tabela_yasca} apresenta os resultados para a ferramenta Yasca.
+\begin{table}[h]
+  \centering
+\begin{tabular}{| l | l |}
+  \hline
+  Positivos & 0 \\ \hline
+  Falsos Positivos & 0 \\ \hline
+  Falsos Negativos & 6 \\
+  \hline
+\end{tabular}
+\caption{Resultados: Yasca}
+\label{tabela_yasca}
+\end{table}
 
 \subsection{Resultados de $F$}
 
@@ -330,22 +362,38 @@ Os casos de teste referentes à \textit{CWE 369 - Divide by Zero} compõe uma qu
   Por fim, as entradas presentes somente em $L(S)$, ou seja, $L(S) - L(f)$, são as instâncias da CWE 369 que a ferramenta não foi capaz de detectar, ou seja, os falsos negativos. Estes somaram 250 entradas, detalhadas em \nameref{apendice:eu2:falso_negativo}
 
   \subsection{Resultados}
-  \begin{itemize}
-    \item Positivos: 434
-    \item Falsos Positivos: 432
-    \item Falsos Negativos: 250
-  \end{itemize}
+
+A tabela \ref{tabela_framac1} apresenta os resultados para a ferramenta Frama-C.
+\begin{table}[h]
+  \centering
+\begin{tabular}{| l | l |}
+  \hline
+  Positivos & 434 \\ \hline
+  Falsos Positivos & 432 \\ \hline
+  Falsos Negativos & 250 \\
+  \hline
+\end{tabular}
+\caption{Resultados: Frama-C}
+\label{tabela_framac1}
+\end{table}
 
       Nota-se então que a quantidade de Falsos negativos não é 0, descaracterizando uma análise correta. Estes Falsos Negativos foram analisados e pôde-se perceber que todos dependem de retornos de funções de bibliotecas do sistema, como no caso de teste 
       \lstinputlisting[language=C, firstline=23, firstnumber=23, lastline=31]{dados/CWE369_Divide_by_Zero__int_fscanf_modulo_01.c}
       onde podemos perceber que sem uma definição da função \lstinline{fscanf}, a ferramenta não pode assumir que o valor do inteiro data é alterado, de modo que a ferramenta realiza um único teste onde data tem o valor $-1$ e não uma faixa variando do menor ao maior inteiro da arquitetura, que é o que acontece de fato, de modo que o valor pode receber 0, caracterizando instância da CWE 369. 
 
-      Para não penalizar a ferramenta dada a ausência das definições das funções de bibliotecas do sistema, que foram alertadas pela ferramenta em seu relatório final em \nameref{apendice:eu2:framac_raw_report}, não serão considerados os falsos negativos referentes a trechos dependentes de tais funções, de modo que os resultados para a Frama-C passam a ser
-      \begin{itemize}
-        \item Positivos: 434
-        \item Falsos Positivos: 432
-        \item Falsos Negativos: 0
-      \end{itemize}
+      Para não penalizar a ferramenta dada a ausência das definições das funções de bibliotecas do sistema, que foram alertadas pela ferramenta em seu relatório final em \nameref{apendice:eu2:framac_raw_report}, não serão considerados os falsos negativos referentes a trechos dependentes de tais funções, de modo que os resultados para a Frama-C passam a ser representado pela tabela \ref{tabela_framac2},
+\begin{table}[h]
+  \centering
+\begin{tabular}{| l | l |}
+  \hline
+  Positivos & 434 \\ \hline
+  Falsos Positivos & 432 \\ \hline
+  Falsos Negativos & 0 \\
+  \hline
+\end{tabular}
+\caption{Resultados: Frama-C sem penalidades}
+\label{tabela_framac2}
+\end{table}
       de modo que a ferramenta cumpre a pós-condição de não gerar falsos negativos.
 
       A última pós-condição é referente à proporção de falsos positivos gerados pela ferramenta, de modo que
