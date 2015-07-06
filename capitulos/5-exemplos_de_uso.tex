@@ -48,15 +48,22 @@ $F = \lbrace Cppcheck, RATS, Splint, Yasca\rbrace$
 
 \subsection{Suíte de testes $S$}
 
-O Juliet 1.2, disponível no SARD\footnote{Download disponível em \url{http://samate.nist.gov/SARD/testsuites/juliet/Juliet_Test_Suite_v1.2_for_C_Cpp.zip} e \url{http://samate.nist.gov/SARD/testsuites/juliet/Juliet_Test_Suite_v1.2_for_Java.zip}}, inclui um conjunto de casos de teste para a CWE 835. Visto que a avaliação tem como objetivo verificar a capacidade de detecção de tal CWE, consideraremos como suíte de testes $S$ o subconjunto de casos de teste que tratam da CWE 835 presente no Juliet 1.2 escritos em linguagem C. Estes casos de teste são encontrados em \lstinline{testcases/CWE835_Infinite_Loop/}. Sendo assim, $S$ é composto dos seguintes arquivos:
-\begin{itemize}
-  \item \lstinline{CWE835_Infinite_Loop__do_01.c}
-  \item \lstinline{CWE835_Infinite_Loop__do_true_01.c}
-  \item \lstinline{CWE835_Infinite_Loop__for_01.c}
-  \item \lstinline{CWE835_Infinite_Loop__for_empty_01.c}
-  \item \lstinline{CWE835_Infinite_Loop__while_01.c}
-  \item \lstinline{CWE835_Infinite_Loop__while_true_01.c}
-\end{itemize}
+O Juliet 1.2, disponível no SARD\footnote{Download disponível em \url{http://samate.nist.gov/SARD/testsuites/juliet/Juliet_Test_Suite_v1.2_for_C_Cpp.zip} e \url{http://samate.nist.gov/SARD/testsuites/juliet/Juliet_Test_Suite_v1.2_for_Java.zip}}, inclui um conjunto de casos de teste para a CWE 835. Visto que a avaliação tem como objetivo verificar a capacidade de detecção de tal CWE, consideraremos como suíte de testes $S$ o subconjunto de casos de teste que tratam da CWE 835 presente no Juliet 1.2 escritos em linguagem C. Estes casos de teste são encontrados em \lstinline{testcases/CWE835_Infinite_Loop/}. Sendo assim, os arquivos que compõe $S$ estão listados na tabla \ref{tabela_S_eu1}.
+
+\begin{center}
+\begin{tabular}{| l |}
+  \hline
+  \textbf{Arquivo} \\ \hline
+  \lstinline{CWE835_Infinite_Loop__do_01.c} \\ \hline
+  \lstinline{CWE835_Infinite_Loop__do_true_01.c} \\ \hline
+  \lstinline{CWE835_Infinite_Loop__for_01.c} \\ \hline
+  \lstinline{CWE835_Infinite_Loop__for_empty_01.c} \\ \hline
+  \lstinline{CWE835_Infinite_Loop__while_01.c} \\ \hline
+  \lstinline{CWE835_Infinite_Loop__while_true_01.c} \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Conjunto S para Exemplo de Uso 1}
+\label{tabela_S_eu1}
 
 \subsection{Linguagem de saída $L$}
 

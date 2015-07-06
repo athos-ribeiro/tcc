@@ -14,7 +14,7 @@ Ferramentas de análise estática podem inferir informações  acerca de um soft
 
 \textbf{Fraquezas}\index{fraqueza} são defeitos de software provenientes do design, implementação ou outras áreas do ciclo de desenvolvimento do software. Em condições específicas, fraquezas podem contribuir para a introdução de \textbf{vulnerabilidades}\index{vulnerabilidade} no software. Quando ativadas, estas vulnerabilidades (manifestações de fraquezas) resultam em falhas de sistema, ou simplesmente falhas.
 
-``Muitas vezes os termos fraqueza e vulnerabilidade são confundidos ou as pessoas discordam de suas definições. As ferramentas de análise estática buscam por fraquezas no código, quando as pessoas, em grande parte das vezes, gostariam que elas buscassem por vulnerabilidades''\footnote{por Steven M. Christey*, engenheiro de segurança da informação do MITRE em uma lista de discussão sobre segurança web disponível em \url{http://lists.webappsec.org/pipermail/websecurity_lists.webappsec.org/2011-November/008118.html}}.
+``Muitas vezes os termos fraqueza e vulnerabilidade são confundidos ou as pessoas discordam de suas definições. As ferramentas de análise estática buscam por fraquezas no código, quando as pessoas, em grande parte das vezes, gostariam que elas buscassem por vulnerabilidades''\footnote{por Steven M. Christey, engenheiro de segurança da informação do MITRE em uma lista de discussão sobre segurança web disponível em \url{http://lists.webappsec.org/pipermail/websecurity_lists.webappsec.org/2011-November/008118.html}}.
 
 O MITRE é uma organização sem fins lucrativos que opera centros de pesquisa e desenvolvimento patrocinados pelo governo federal dos Estados Unidos da América. Uma das iniciativas do MITRE, patrocinada por um projeto de métricas de qualidade de software e avaliação de ferramentas (SAMATE - Software Assurance Metrics and Tool Evaluation), visa elaborar e manter um catálogo de fraquezas de software, onde as fraquezas de software conhecidas recebem uma definição formal e um número identificador. Tal catálogo de fraquezas é conhecido como Common Weakness Enumeration ou CWE\footnote{\url{cwe.mitre.org}}, e tem sido amplamente adotado para referenciar fraquezas de software, tanto na indústria quanto na academia.
 
@@ -46,21 +46,21 @@ TD = P + FN,
 
   Precisão: Taxa de defeitos reportados para a quantidade total de defeitos presentes no código analisado.  Ela pode ser representada pela Equação \eqref{eq2},
 \begin{equation}\label{eq2}
-  P_r = P / (P + FP)
+  P_r = \frac{P}{P + FP}
 \end{equation}
   onde $P_r$ é a precisão, $P$ o número de Positivos e $FP$ o número de Falsos Positivos.
 
-  A precisão indica a capacidade da ferramenta de identificar defeitos. Note que a precisão é indefinida quando uma ferramenta não reporta erros \cite{nsa}, pois $P = 0$, e $FP = 0$, de modo que $P_r = 0/0$. Quando definida, $0 \leq Pr \leq 1$.
+  A precisão indica a capacidade da ferramenta de identificar defeitos. Note que a precisão é indefinida quando uma ferramenta não reporta erros \cite{nsa}, pois $P = 0$, e $FP = 0$, de modo que $P_r = \frac{0}{0}$. Quando definida, $0 \leq Pr \leq 1$.
 
   Corretude: Corresponde à fração de defeitos reais reportados pela ferramenta. É definida como o número de Positivos dividido pela quantidade de Trechos Defeituosos existentes no código, conforme apresenta a Equação \eqref{eq3},
 \begin{equation}\label{eq3}
-  C\_r = P/(P + FN),
+  C\_r = \frac{P}{P + FN},
 \end{equation}
   onde $C_r$ é a Corretude, $P$ o número de positivos e $FN$ o número de negativos.
 
   ou, em casos onde a equação \eqref{eq1} for verdadeira, de acordo com a Equação \eqref{eq4}.
 \begin{equation}\label{eq4}
-C_r = P / TD,
+  C_r = \frac{P}{TD},
 \end{equation}
   onde $C_r$ é a Corretude, $P$ o número de positivos e $FN$ o número de negativos.
 
@@ -70,7 +70,7 @@ C_r = P / TD,
 
   F-score: Média harmônica da Correção e Precisão. O F-score auxilia no julgamento de uma ferramenta de análise estática verificando a quantidade de defeitos capturados e quanto ruído foi gerado no processo (falsos positivos). Utiliza-se a media harmônica de modo a prover pontuação justa para ferramentas que com bons resultados tanto para Corretude quanto para Precisão (Uma ferramenta com Corretude alta e Precisão baixa não teria melhores resultados que uma ferramenta mediana para ambas as métricas). O cálculo do F-score é apresentado na Equação \eqref{eq5}.
 \begin{equation}\label{eq5}
-F_s = 2*[(P * C_r) / (P + C_r)]
+  F_s = 2(\frac{P \times C_r}{P + C_r})
 \end{equation}
   onde $C_r$ é a Corretude, $P$ o número de positivos e $FN$ o número de negativos.
 
