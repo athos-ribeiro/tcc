@@ -1,8 +1,8 @@
-\chapter{Fundamentação teórica}\label{fundamentacao_teorica}
+\chapter{Fundamentação Teórica}\label{fundamentacao_teorica}
 
 Este capitulo contextualiza o presente trabalho, apresentando definições de conceitos que serão utilizados em outros capítulos. Inicialmente define-se análise estática de código fonte e apresentam-se exemplos métricas para um contexto de segurança. Em seguida, são apresentadas algumas ferramentas para análise estática, bem como a definição exemplos de bases de dados de vulnerabilidades. Por fim, discutem-se trabalhos relacionados à análise estática com foco em segurança e avaliações deste tipo de ferramenta.
 
-\section{Análise estática de código}\label{fundamentacao_teorica:analise_estatica_de_codigo}
+\section{Análise Estática de Código}\label{fundamentacao_teorica:analise_estatica_de_codigo}
 
 Metade dos defeitos de segurança de software são introduzidos à nível de código-fonte \cite{vadim}. Em tal contexto, software pode ser verificado através da análise dinâmica ou da análise estática \cite{concolic}.
 
@@ -26,7 +26,7 @@ Como definido em \cite{sa_spec}, chama-se \textbf{falso positivo}, ou alarme fal
 
 Uma ferramenta ideal não cometeria erros, apontando todos os defeitos do código (mesmo que apenas em uma dada categoria) e nunca apontando um trecho de código correto como defeituoso (a ferramenta não comete falsos positivos nem falsos negativos). Trabalhos anteriores mostram que é impossível, mesmo em teoria, produzir tal ferramenta \cite{sa_spec}. É possível, porém, produzir ferramentas capazes de cometer apenas um dos erros (falsos positivos ou falsos negativos). À análise estática que não gera falsos negativos, ou seja, aponta todos os defeitos no código, chamamos \textbf{análise correta}. À análise estática que não gera falsos positivos, ou seja, todos os possíveis defeitos apontados por ela são de fato trechos de código defeituosos, chama-se \textbf{análise completa}.
 
-\section{Métricas e métricas de segurança}
+\section{Métricas e Métricas de Segurança}
 
 Em \cite{nsa}, o CAS (Center for Assured Software) da Agência de Segurança Nacional (NSA – National Security Agency), centro de pesquisa criado para aumentar o nível de confiança de que os software utilizados pelo Departamento de Defesa dos Estados Unidos (DoD – Department of Defense) estão livres de vulnerabilidades \cite{nsa}, apresenta um conjunto de métricas para que se aplique sua metodologia. Das métricas apresentadas, algumas são de propósito geral, ou seja, independentes da natureza da suíte de testes ou mesmo da metodologia de testes empregada na análise, desde que sejam conhecidos todos os defeitos presentes no código a ser analisado. Ao realizar seu \textit{workshop} de avaliação de ferramentas, o SATE, o NIST utiliza este conjunto de métricas descrito pelo CAS para suas análises, como notado em \cite{sate_iv}. Essas métricas são:
 
@@ -78,7 +78,7 @@ TD = P + FN,
 
   Existem outras métricas que são relevantes apenas para análises que utilizem suítes de teste como a proposta pelo CAS em \cite{nsa}, também descrita em \cite{juliet}. A mesma se trata de uma suíte de testes composta de casos de teste artificiais ou sintéticos, que são definidos posteriormente, na Seção \nameref{fundamentacao_teorica:bases_de_testes_de_vulnerabilidades}.
 
-  \section{Ferramentas de análise estática de código}
+  \section{Ferramentas de Análise Estática de Código}
 
   Existem diversas ferramentas para análise estática de código-fonte. Algumas delas se especializam em diversos tipos de análise, dificultando qualquer esforço de classificá-las como ferramentas voltadas à segurança de código-fonte ou não. O grupo de trabalho SAMATE do  NIST mantém uma lista com ferramentas de análise estática voltada à segurança. Esta lista é de acesso público, irrestrito e pode ser acessada em \url{http://samate.nist.gov/index.php/Source_Code_Security_Analyzers.html}. Embora a lista seja aberta, a mesma inclui ferramentas de diferentes licenças, onde algumas são Livres\footnote{O conceito de Software Livre é formalmente definido em \url{https://www.gnu.org/philosophy/free-sw.html}} e outras, proprietárias, de modo que nem todas as ferramentas estão facilmente disponíveis para uso, testes ou avaliações.
 
