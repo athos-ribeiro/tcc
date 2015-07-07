@@ -50,7 +50,8 @@ $F = \lbrace Cppcheck, RATS, Splint, Yasca\rbrace$
 
 O Juliet 1.2, disponível no SARD\footnote{Download disponível em \url{http://samate.nist.gov/SARD/testsuites/juliet/Juliet_Test_Suite_v1.2_for_C_Cpp.zip} e \url{http://samate.nist.gov/SARD/testsuites/juliet/Juliet_Test_Suite_v1.2_for_Java.zip}}, inclui um conjunto de casos de teste para a CWE 835. Visto que a avaliação tem como objetivo verificar a capacidade de detecção de tal CWE, consideraremos como suíte de testes $S$ o subconjunto de casos de teste que tratam da CWE 835 presente no Juliet 1.2 escritos em linguagem C. Estes casos de teste são encontrados em \lstinline{testcases/CWE835_Infinite_Loop/}. Sendo assim, os arquivos que compõe $S$ estão listados na tabla \ref{tabela_S_eu1}.
 
-\begin{center}
+\begin{table}
+  \centering
 \begin{tabular}{| l |}
   \hline
   \textbf{Arquivo} \\ \hline
@@ -61,9 +62,9 @@ O Juliet 1.2, disponível no SARD\footnote{Download disponível em \url{http://s
   \lstinline{CWE835_Infinite_Loop__while_01.c} \\ \hline
   \lstinline{CWE835_Infinite_Loop__while_true_01.c} \\ \hline
 \end{tabular}
-\end{center}
-\captionof{table}{Conjunto S para Exemplo de Uso 1}
+\caption{Conjunto S para Exemplo de Uso 1}
 \label{tabela_S_eu1}
+\end{table}
 
 \subsection{Linguagem de Saída $L$}
 
@@ -279,7 +280,7 @@ Precondição:
 Pós-condições:
 \begin{itemize}
   \item A ferramenta não produz nenhum falso negativo;
-  \item um minimo de 60\% dos positivos apontados pela ferramenta, devem ser verdadeiros\footnote{Caso contrário, qualquer ferramenta que aponte todos os pontos de entrada para o defeito como defeituosos seriam consideradas ferramentas de análise correta. A Ockham Criteria possui um critério similar, porem relacionado também à possibilidade de não decisão das ferramentas que realizam análise correta, como provado por \cite{rice}. Note ainda que este valor de 60\% é baseado no mesmo valor para o critério similar da Ockham Criteria, que por sua vez é um valor completamente arbitrário dado que fora a primeira avaliação feita pelo NIST com ferramentas de análise estática. Consultando os resultados da Ockham para a Frama-C (estudo não publicado), nota-se que a menor porcentagem atingida pela mesma é de 80\% par as CWE selecionadas}.
+  \item um minimo de 60\% dos positivos apontados pela ferramenta, devem ser verdadeiros\footnote{Caso contrário, qualquer ferramenta que aponte todos os pontos de entrada para o defeito como defeituosos seriam consideradas ferramentas de análise correta. A Ockham Criteria possui um critério similar, porem relacionado também à possibilidade de não decisão das ferramentas que realizam análise correta, como provado por \cite{rice}. Note ainda que este valor de 60\% é baseado no mesmo valor para o critério similar da Ockham Criteria, que por sua vez é um valor completamente arbitrário dado que fora a primeira avaliação feita pelo NIST com ferramentas de análise estática. Consultando os resultados da Ockham para a Frama-C (estudo não publicado), nota-se que a menor porcentagem atingida pela mesma é de 80\% pars as CWE selecionadas}.
 \end{itemize}
 
 \subsection{Ferramentas}
@@ -341,7 +342,7 @@ Os casos de teste referentes à \textit{CWE 369 - Divide by Zero} compõe uma qu
 
   A Frama-C realiza análises complexas, considerando diferentes possibilidades na para a árvore de execução do programa. Isto requer que se analisem também as definições para as funções utilizadas, de modo que para se utilizar todo o potencial da ferramenta, definições para as funções de bibliotecas de sistemas utilizadas nos casos de teste devem ser fornecidas. Dada a complexidade adicional, este passo não foi realizado e apresentaram impacto nos resultados finais desta análise.
 
-  A saída para o relatório da Frama-C se encontra em \nameref{apendice:eu2:framac_raw_report}.
+  O relatório completo gerado pela Frama-C não foi anexada neste trabalho devido ao seu tamanho (60MB)\footnote{O relatório pode ser obtido em \url{nuvem.athosribeiro.com/tcc/framac_report} ou entrando em contato com o autor em athoscribeiro AT gmail.com}.
 
   \subsubsection{Análise Traduzida para $L$: $L(f)$}
 
@@ -381,7 +382,7 @@ Nota-se então que a quantidade de Falsos negativos não é 0, descaracterizando
       \lstinputlisting[language=C, firstline=23, firstnumber=23, lastline=31, label=exemplo_cwe369, caption=CWE369 Divide by Zero]{dados/CWE369_Divide_by_Zero__int_fscanf_modulo_01.c}
       onde podemos perceber que sem uma definição da função \lstinline{fscanf}, a ferramenta não pode assumir que o valor do inteiro data é alterado, de modo que a ferramenta realiza um único teste onde data tem o valor $-1$ e não uma faixa variando do menor ao maior inteiro da arquitetura, que é o que acontece de fato, de modo que o valor pode receber 0, caracterizando instância da CWE 369. 
 
-      Para não penalizar a ferramenta dada a ausência das definições das funções de bibliotecas do sistema, que foram alertadas pela ferramenta em seu relatório final em \nameref{apendice:eu2:framac_raw_report}, não serão considerados os falsos negativos referentes a trechos dependentes de tais funções, de modo que os resultados para a Frama-C passam a ser representado pela tabela \ref{tabela_framac2},
+      Para não penalizar a ferramenta dada a ausência das definições das funções de bibliotecas do sistema, que foram alertadas pela ferramenta em seu relatório final, não serão considerados os falsos negativos referentes a trechos dependentes de tais funções, de modo que os resultados para a Frama-C passam a ser representado pela tabela \ref{tabela_framac2},
 \begin{table}[h]
   \centering
 \begin{tabular}{| l | l |}
