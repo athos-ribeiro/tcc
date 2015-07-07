@@ -377,8 +377,8 @@ A tabela \ref{tabela_framac1} apresenta os resultados para a ferramenta Frama-C.
 \label{tabela_framac1}
 \end{table}
 
-      Nota-se então que a quantidade de Falsos negativos não é 0, descaracterizando uma análise correta. Estes Falsos Negativos foram analisados e pôde-se perceber que todos dependem de retornos de funções de bibliotecas do sistema, como no caso de teste 
-      \lstinputlisting[language=C, firstline=23, firstnumber=23, lastline=31]{dados/CWE369_Divide_by_Zero__int_fscanf_modulo_01.c}
+Nota-se então que a quantidade de Falsos negativos não é 0, descaracterizando uma análise correta. Estes Falsos Negativos foram analisados e pôde-se perceber que todos dependem de retornos de funções de bibliotecas do sistema, como no caso de teste representado por \nameref{exemplo_cwe369}, retirado do caso de testes \lstinline{CWE369_Divide_by_Zero__int_fscanf_modulo_01.c},
+      \lstinputlisting[language=C, firstline=23, firstnumber=23, lastline=31, label=exemplo_cwe369, caption=CWE369 Divide by Zero]{dados/CWE369_Divide_by_Zero__int_fscanf_modulo_01.c}
       onde podemos perceber que sem uma definição da função \lstinline{fscanf}, a ferramenta não pode assumir que o valor do inteiro data é alterado, de modo que a ferramenta realiza um único teste onde data tem o valor $-1$ e não uma faixa variando do menor ao maior inteiro da arquitetura, que é o que acontece de fato, de modo que o valor pode receber 0, caracterizando instância da CWE 369. 
 
       Para não penalizar a ferramenta dada a ausência das definições das funções de bibliotecas do sistema, que foram alertadas pela ferramenta em seu relatório final em \nameref{apendice:eu2:framac_raw_report}, não serão considerados os falsos negativos referentes a trechos dependentes de tais funções, de modo que os resultados para a Frama-C passam a ser representado pela tabela \ref{tabela_framac2},

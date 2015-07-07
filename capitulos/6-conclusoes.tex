@@ -4,16 +4,16 @@
 
 \subsection{Exemplo de Uso 1 - Avaliação de Ferramentas Livres}
 
-Três das ferramentas avaliadas, Cppcheck, RATS e Yasca, não mencionam a capacidade de detecção de loops infinitos, de modo que é compreensível a não detecção dos defeitos a elas apresentados.  Já ferramenta Splint é a única que se apresenta explicitamente em sua documentação como capaz de detectar loops infinitos, porém não fora capaz de detectar o defeito em nenhum dos casos de teste. Uma lista de discussão da Universidade de Virgínia traz uma discussão a respeito da não detecção de loops infinitos\footnote{\url{http://www.cs.virginia.edu/pipermail/splint-discuss/2008-November/001248.html}} com esta ferramenta, algumas das justificativas para o que consideramos um Falso Negativo é que alguns deles não se tratam de loops infinitos, dado que em um \textit{loop} como
-\begin{lstlisting}[language=C]
+Três das ferramentas avaliadas, Cppcheck, RATS e Yasca, não mencionam a capacidade de detecção de loops infinitos, de modo que é compreensível a não detecção dos defeitos a elas apresentados.  Já ferramenta Splint é a única que se apresenta explicitamente em sua documentação como capaz de detectar loops infinitos, porém não fora capaz de detectar o defeito em nenhum dos casos de teste. Uma lista de discussão da Universidade de Virgínia traz uma discussão a respeito da não detecção de loops infinitos\footnote{\url{http://www.cs.virginia.edu/pipermail/splint-discuss/2008-November/001248.html}} com esta ferramenta, algumas das justificativas para o que consideramos um Falso Negativo é que alguns deles não se tratam de loops infinitos, dado que em um \textit{loop} como em \nameref{undefined_for} abaixo,
+\begin{lstlisting}[language=C,caption=Exemplo de loop indefinido,label=undefined_for]
 int i = 0;
 for(i = 0; i >= 0; i++)
 {
   printf("Seria eu um loop infinito?\n");
 }
 \end{lstlisting}
-a variável \lstinline{i} alcançaria o valor máximo de um inteiro para a arquitetura e haveria um \textit{wraparround}, de modo que a mesma assumiria um valor negativo e o \textit{loop} terminaria. Porém a ocorrência do \textit{wraparround} poderia ser influenciada pelo compilador, de modo que o \textit{loop} passa a ser indefinido, se mostrando uma instância do Problema da Parada (\textit{halting problem}) \cite{turing}. Porém, nos casos de teste analisados, existem estruturas da forma
-\begin{lstlisting}[language=C]
+a variável \lstinline{i} alcançaria o valor máximo de um inteiro para a arquitetura e haveria um \textit{wraparround}, de modo que a mesma assumiria um valor negativo e o \textit{loop} terminaria. Porém a ocorrência do \textit{wraparround} poderia ser influenciada pelo compilador, de modo que o \textit{loop} passa a ser indefinido, se mostrando uma instância do Problema da Parada (\textit{halting problem}) \cite{turing}. Porém, nos casos de teste analisados, existem estruturas da forma representada por \nameref{infinite_for},
+\begin{lstlisting}[language=C, caption=Exemplo de loop infinito,label=infinite_for]
 for(;;)
 {
   printf("Embora eu não saiba, sou um loop infinito!");
