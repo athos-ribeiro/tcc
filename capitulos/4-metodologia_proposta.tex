@@ -2,28 +2,30 @@
 
 \section{Visão Geral}\label{metodologia_proposta:visao_geral}
 
-Propõe-se aqui, uma metodologia para avaliação de ferramentas de análise estática de código-fonte. O método é composto de 11 atividades, que estão listadas a seguir, representadas no fluxograma na figura \ref{fluxograma} e detalhadas na próxima seção.
-\begin{itemize}
+Propõe-se aqui, uma metodologia para avaliação de ferramentas de análise estática de código-fonte. O método é composto de 11 atividades, que estão listadas a seguir, representadas no fluxograma na Figura \ref{fluxograma} e detalhadas na próxima seção. Inicialmente, é feita a seleção das ferramentas através das seguintes etapas:
+\begin{enumerate}
   \item Estabelecer objetivo de análise, critérios e métricas;
   \item Eleger ferramentas candidatas;
   \item Definir um conjunto de casos de teste;
   \item Definir linguagem comum para reportar defeitos;
-  \item Traduzir casos de teste para linguagem comum;
-\end{itemize}
+  \item Traduzir casos de teste para linguagem comum.
+\end{enumerate}
 Em seguida, para cada uma das ferramentas selecionadas, devem-se seguir os seguintes passos:
-\begin{itemize}
+\begin{enumerate}
+    \setcounter{enumi}{5}
   \item Selecionar subconjunto de casos de teste para análise;
   \item Realizar análise;
   \item Traduzir resultado da análise para linguagem comum;
   \item Comparar resultados da análise com defeitos dos casos de  teste;
   \item Analisar métricas e confrontar com critérios;
-\end{itemize}
+\end{enumerate}
 Por fim, deve-se, para todas as ferramentas,
-\begin{itemize}
+\begin{enumerate}
+    \setcounter{enumi}{10}
   \item Apresentar resultados e classificar ferramentas.
-\end{itemize}
+\end{enumerate}
 
-\input{figuras/fluxograma.tkz}
+%\input{figuras/fluxograma.tkz}
 
 Na seção a seguir, \nameref{metodologia_proposta:detalhamento_de_atividades} e em suas subseções, são detalhadas cada uma das atividades listadas, incluindo, quando relevantes, sugestões de como melhor alcançar os resultados de cada uma delas.
 
@@ -31,7 +33,7 @@ Na seção a seguir, \nameref{metodologia_proposta:detalhamento_de_atividades} e
 
 \subsection{Estabelecer Objetivo de Análise, Critérios e Métricas}
 
-Inicialmente deve-se definir um escopo: Os \textbf{objetivos} a serem alcançados com a análise estática, como por exemplo, a diminuição de defeitos críticos no código, bem como a definição de quais tipos de defeitos devem ser considerados críticos, ou o levantamento do maior número de possíveis pontos de defeitos. Note que, quanto maior o número de defeitos que uma ferramenta reporta, maior o esforço empregado em analisar o relatório de tal ferramenta e maior o trabalho da equipe de desenvolvimento em avaliar e mitigar cada um dos possíveis defeitos encontrados no código, de modo que, como sugerido por \cite{seatbelts}, deve-se calibrar a ferramenta para que a análise alinhe-se com os focos do desenvolvimento.
+Inicialmente deve-se definir um escopo: os \textbf{objetivos} a serem alcançados com a análise estática, como por exemplo, a diminuição de defeitos críticos no código, bem como a definição de quais tipos de defeitos devem ser considerados críticos, ou o levantamento do maior número de possíveis pontos de defeitos. Note que, quanto maior o número de defeitos que uma ferramenta reporta, maior o esforço empregado em analisar o relatório de tal ferramenta e maior o trabalho da equipe de desenvolvimento em avaliar e mitigar cada um dos possíveis defeitos encontrados no código, de modo que, como sugerido por \cite{seatbelts}, deve-se calibrar a ferramenta para que a análise alinhe-se com os focos do desenvolvimento.
 
 Ferramentas de análise estática de código fonte podem utilizar diferentes técnicas de detecção de defeitos. Algumas vulnerabilidades são encontradas mais facilmente à partir de determinadas técnicas, e, em contrapartida, alguns tipos de defeitos dificilmente são encontrados por determinadas técnicas \cite{harvard}. Se os objetivos da análise da ferramenta são conhecidos previamente, facilita-se a seleção de ferramentas candidatas à análise sem a necessidade de avaliar ferramentas que provavelmente não atenderão aos critérios de seleção (Por exemplo, uma ferramenta de análise puramente léxica dificilmente passaria em critérios definidos para uma ferramenta de análise correta ou completa para determinada vulnerabilidade, dada à alta quantidade de falsos positivos e a presença de falsos negativos\footnote{Uma análise correta não pode conter falsos negativos}, como mencionado em \cite{harvard} quanto à capacidade das mesmas de detectar defeitos relacionados a \textit{buffer overflows}).
 
@@ -47,7 +49,7 @@ Devem ser selecionadas métricas significativas para a avaliação da ferramenta
 
 Os conceitos de falso positivo e falso negativo são universais, ou seja, independentes do tipo de ferramenta ou da metodologia empregada para a análise. Sendo assim, é interessante que tais conceitos sejam incorporados nas métricas desenvolvidas e/ou selecionadas.
 
-Chamaremos de $C$, o conjunto de critérios de avaliação elaborados nesta atividade.
+Chamaremos de $C$ o conjunto de critérios de avaliação elaborados nesta atividade.
 
 \subsection{Eleger Ferramentas Candidatas}
 
@@ -111,13 +113,12 @@ Para tal pode-se analisar todas as possíveis saídas da ferramenta de análise 
 
 Nesta atividade, deve-se definir uma linguagem comum, e possivelmente uma notação para relatar defeitos, de modo que, posteriormente os defeitos conhecidos da suíte de testes e os defeitos reportados pela ferramenta a ser avaliada sejam mapeados em tais linguagem e notação (quando presente), facilitando análises posteriores. Ao definir-se tal linguagem, deve-se considerar os objetivos, critérios e métricas selecionadas para a avaliação.
 
-À linguagem comum para relatórios de defeitos, chamaremos de $L$.
+À linguagem comum para relatórios de defeitos chamaremos de $L$.
 
 \subsection{Traduzir Casos de Teste Para Linguagem Comum}
 
 Nesta atividade, devem-se representar os defeitos conhecidos presentes na suíte de testes $S$ na linguagem $L$ definida anteriormente.
-
-Temos assim, todos os defeitos de $S$ representados em $L$, ou $L(S)$.
+Assim, todos os defeitos de $S$ serão representados por $L(S)$.
 
 Se a suíte de testes utilizada apresentar as características descritas em \cite{nsa} e \cite{harvard}, onde um caso de testes apresenta um trecho de código com um defeito e em seguida o mesmo trecho de código sem o defeito, pode ser interessante mapear os trechos de código não defeituosos para a linguagem, de modo a medir a taxa de confusão da ferramenta analisada, por exemplo, nos trechos de um caso de teste extraído do Juliet representados em \nameref{trecho_cwe190}, temos:
 \lstinputlisting[language=C, firstline=22, firstnumber=22, lastline=70, label=trecho_cwe190, caption=Trecho de caso de teste da CWE 190]{dados/CWE190_Integer_Overflow__char_max_add_01.c}
@@ -161,7 +162,7 @@ Para cada ferramenta $f$, traduzir sua saída $O(R(f), f)$ para a linguagem comu
 
 Seja $L(S)$ a representação na linguagem $L$ do conjunto de defeitos presentes nos casos de teste de $S$, temos que $L(R(f))$ é o subconjunto de $L(S)$ que contém apenas os defeitos de $S$ relevantes à análise realizada pela ferramenta $f$ em sua amostra de casos de testes $R(f)$.
 
-Deve-se então, para cada ferramenta $f$ em $F$, comparar $L(f)$ com $L(R(f))$. Temos nas \eqref{eq6}, \eqref{eq7} e \eqref{eq8}:
+Deve-se então, para cada ferramenta $f$ em $F$, comparar $L(f)$ com $L(R(f))$. Temos nas Equações \eqref{eq6}, \eqref{eq7} e \eqref{eq8}:
 \begin{equation}\label{eq6}
   L(f) \cap L(R(f)) = P
 \end{equation}
