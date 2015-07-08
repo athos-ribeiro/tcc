@@ -4,13 +4,13 @@
 
 O primeiro exemplo de uso apresenta um curto ensaio de demonstração da metodologia com as ferramentas de análise estática de código-fonte de licenças Livres\footnote{Licenças livres garantem que pessoas possam executar e estudar as ferramentas livremente, conforme descrito em \url{https://www.gnu.org/philosophy/free-sw.html}}. 
 
-A avaliação presente foi feita de forma independente, sem qualquer tipo de contato com desenvolvedores e/ou mantenedores das ferramentas mencionadas, de modo que existe a possibilidade de não terem sido calibradas de forma ótima para a avaliação em questão. Note que em avaliações de mercado ou acadêmicas, como é o caso das avaliações conduzidas pelo SATE do NIST, os desenvolvedores, vendedores ou mantenedores das ferramentas, estas sendo Livres ou não, têm a oportunidade de calibrar tais ferramentas, visto que eles, os próprios responsáveis pela ferramenta sob avaliação, quem conduzem a análise sobre a suíte de testes como apresentado em \cite{sate_iv}.
+A avaliação presente foi feita de forma independente, sem qualquer tipo de contato com desenvolvedores e/ou mantenedores das ferramentas mencionadas, de modo que existe a possibilidade de não terem sido calibradas de forma ótima para a avaliação em questão. Note que em avaliações de mercado ou acadêmicas, como é o caso das avaliações conduzidas pelo SATE do NIST, os desenvolvedores, vendedores ou mantenedores das ferramentas, estas sendo Livres ou não, têm a oportunidade de calibrar tais ferramentas, visto que são eles, os próprios responsáveis pela ferramenta sob avaliação, quem conduzem a análise sobre a suíte de testes, como apresentado em \cite{sate_iv}.
 
 \subsection{Objetivos e Critérios de Avaliação}
 
 Esta avaliação tem como objetivo comparar ferramentas de análise estática de licenças Livres quanto à detecção de Loops Infinitos em código escrito em linguagem C, fraqueza mapeada como CWE, identificada pela CWE 835\footnote{\url{http://cwe.mitre.org/data/definitions/835.html}}.
 
-Precondições:
+Pre-condições:
 \begin{itemize}
   \item A ferramenta deve ser Livre;
   \item A ferramenta deve declarar explicitamente sua capacidade de detectar loops infinitos, ou ao menos não declarar sua incapacidade para detectar tal categoria de fraqueza;
@@ -29,7 +29,7 @@ Por fim, serão considerados apenas os números de Positivos, Falsos Positivos e
 
 \subsubsection{Ferramentas Pré-candidatas}
 
-Como ferramentas pré-candidatas, foram utilizadas as ferramentas listadas pelo SAMATE do NIST como ferramentas de análise estática com foco em segurança\footnote{A lista completa pode ser acessada em \url{http://samate.nist.gov/index.php/Source_Code_Security_Analyzers.html}}. Deste modo, as ferramentas pré-candidata à avaliação são apresentadas na Tabela \ref{tabela_ferramentas}
+Como ferramentas pré-candidatas, foram utilizadas as ferramentas listadas pelo SAMATE do NIST como ferramentas de análise estática com foco em segurança\footnote{A lista completa pode ser acessada em \url{http://samate.nist.gov/index.php/Source_Code_Security_Analyzers.html}}. Deste modo, as ferramentas pré-candidata à avaliação são apresentadas na Tabela \ref{tabela_ferramentas}.
 \input{dados/tabela_ferramentas.tex}
 
 Analisando a disponibilidade das ferramentas de modo a eliminar todas que não apresentam disponibilidade gratuita na tabela apresentada pelo NIST, e ainda removendo aquelas que não analisam código C, reduziu-se a lista e analisou-se a licença e descrição de cada uma das ferramentas remanescentes.
@@ -38,7 +38,7 @@ As ferramentas BOON e Csur não apresentam detalhes de suas licenças ou deixam 
 
 As ferramentas Clang Static Analyzer, CQual, Flawfinder, Smatch e UNO apresentam licenças livres, porém apresentam fins específicos em suas documentações, que não incluem a detecção de Loops Infinitos, definido pela CWE 835, sendo assim, estas ferramentas também foram descartadas da análise.
 
-Já as ferramentas, Cppcheck\footnote{\url{http://sourceforge.net/projects/cppcheck/}}, RATS\footnote{\url{https://code.google.com/p/rough-auditing-tool-for-security/}} e Yasca\footnote{\url{http://www.scovetta.com/yasca.html}}, possuem licenças livres e não especificam os tipos de defeitos que são capazes de detectas. Todas elas são capazes de analisar código em linguagem C e são compatíveis com GNU/Linux, de modo que atendem todas as precondições da avaliação e serão avaliadas. Além destas 3 ferramentas mencionadas, a ferramenta Splint\footnote{\url{http://splint.org/}} também atende a todos os critérios e apresenta de maneira explícita em sua documentação a capacidade de detectar Loops Infinitos, ou seja, a ferramenta Splint também será avaliada, pois atende às precondições de avaliação.
+Já as ferramentas, Cppcheck\footnote{\url{http://sourceforge.net/projects/cppcheck/}}, RATS\footnote{\url{https://code.google.com/p/rough-auditing-tool-for-security/}} e Yasca\footnote{\url{http://www.scovetta.com/yasca.html}}, possuem licenças livres e não especificam os tipos de defeitos que são capazes de detectar. Todas elas são capazes de analisar código em linguagem C e são compatíveis com GNU/Linux, de modo que atendem todas as precondições da avaliação e serão avaliadas. Além destas 3 ferramentas mencionadas, a ferramenta Splint\footnote{\url{http://splint.org/}} também atende a todos os critérios e apresenta de maneira explícita em sua documentação a capacidade de detectar Loops Infinitos, ou seja, a ferramenta Splint também será avaliada, pois atende às precondições de avaliação.
 
 \subsubsection{Ferramentas Candidatas à Avaliação: $F$}
 
@@ -48,18 +48,18 @@ $F = \lbrace Cppcheck, RATS, Splint, Yasca\rbrace$
 
 \subsection{Suíte de Testes $S$}
 
-O Juliet 1.2, disponível no SARD\footnote{Download disponível em \url{http://samate.nist.gov/SARD/testsuites/juliet/Juliet_Test_Suite_v1.2_for_C_Cpp.zip} e \url{http://samate.nist.gov/SARD/testsuites/juliet/Juliet_Test_Suite_v1.2_for_Java.zip}}, inclui um conjunto de casos de teste para a CWE 835. Visto que a avaliação tem como objetivo verificar a capacidade de detecção de tal CWE, consideraremos como suíte de testes $S$ o subconjunto de casos de teste que tratam da CWE 835 presente no Juliet 1.2 escritos em linguagem C. Estes casos de teste são encontrados em \lstinline{testcases/CWE835_Infinite_Loop/}. Sendo assim, os arquivos que compõe $S$ estão listados na tabla \ref{tabela_S_eu1}.
+O Juliet 1.2, disponível no SARD\footnote{Download disponível em \url{http://samate.nist.gov/SARD/testsuites/juliet/Juliet_Test_Suite_v1.2_for_C_Cpp.zip} e \url{http://samate.nist.gov/SARD/testsuites/juliet/Juliet_Test_Suite_v1.2_for_Java.zip}}, inclui um conjunto de casos de teste para a CWE 835. Visto que a avaliação tem como objetivo verificar a capacidade de detecção de tal CWE, consideraremos como suíte de testes $S$ o subconjunto de casos de teste que tratam da CWE 835 presente no Juliet 1.2 escritos em linguagem C. Estes casos de teste são encontrados em \lstinline{testcases/CWE835_Infinite_Loop/}. Sendo assim, os arquivos que compõe $S$ estão listados na Tabela \ref{tabela_S_eu1}.
 
 \begin{table}
   \centering
-\begin{tabular}{| l |}
+\begin{tabular}{l}
   \hline
   \textbf{Arquivo} \\ \hline
-  \lstinline!CWE835_Infinite_Loop__do_01.c! \\ \hline
-  \lstinline!CWE835_Infinite_Loop__do_true_01.c! \\ \hline
-  \lstinline!CWE835_Infinite_Loop__for_01.c! \\ \hline
-  \lstinline!CWE835_Infinite_Loop__for_empty_01.c! \\ \hline
-  \lstinline!CWE835_Infinite_Loop__while_01.c! \\ \hline
+  \lstinline!CWE835_Infinite_Loop__do_01.c! \\ 
+  \lstinline!CWE835_Infinite_Loop__do_true_01.c! \\ 
+  \lstinline!CWE835_Infinite_Loop__for_01.c! \\ 
+  \lstinline!CWE835_Infinite_Loop__for_empty_01.c! \\ 
+  \lstinline!CWE835_Infinite_Loop__while_01.c! \\ 
   \lstinline!CWE835_Infinite_Loop__while_true_01.c! \\ \hline
 \end{tabular}
 \caption{Conjunto S para Exemplo de Uso 1}
@@ -87,7 +87,8 @@ Como apenas 6 casos de teste estão disponíveis em S, utilizou-se $R(f) = S$, o
 \subsubsection{Análise}
 
 A análise fora realizada com os seguintes parâmetros:
-\lstinline{cppcheck --enable=all S_estudo_de_caso_1/},
+
+\lstinline{cppcheck --enable=all S_estudo_de_caso_1/}\\\\
 onde o comando \lstinline{--enable=all} habilita todas as verificações realizadas pela ferramenta e \lstinline{S_estudo_de_caso_1/} é o diretório contendo todos os casos de teste de $R(f)$.
 
 A saída da analise para os casos de teste de $S$ foi vazia, ou seja, a ferramenta não foi capaz de detectar defeitos ou gerar falsos positivos para os defeitos presentes nos casos de teste.
@@ -102,10 +103,10 @@ Dos 6 defeitos que existem em $R(f)$, a ferramenta Cppcheck não foi capaz de de
 
 \subsubsection{Resultados de $f$}
 
-A tabela \ref{tabela_cppcheck} apresenta os resultados para a ferramenta Cppcheck.
+A Tabela \ref{tabela_cppcheck} apresenta os resultados para a ferramenta Cppcheck.
 \begin{table}[h]
   \centering
-\begin{tabular}{| l | l |}
+\begin{tabular}{l | l}
   \hline
   Positivos & 0 \\ \hline
   Falsos Positivos & 0 \\ \hline
@@ -126,7 +127,8 @@ Como apenas 6 casos de teste estão disponíveis em $S$, utilizou-se $R(f) = S$,
 \subsubsection{Análise}
 
 A análise fora realizada com os seguintes parâmetros:
-\lstinline{rats -w 3 S_estudo_de_caso_1/},
+
+\lstinline{rats -w 3 S_estudo_de_caso_1/}\\\\
 onde o comando \lstinline{-w 3} habilita o maior nível de checagens da ferramenta, incluindo detecção de problemas de baixa severidade, e \lstinline{S_estudo_de_caso_1/} é o diretório contendo todos os casos de teste de $R(f)$.
 
 A saída da analise para os casos de teste de $S$ apenas alertou problemas quanto à geração de números aleatórios, que está fora do escopo desta avaliação, ou seja, a ferramenta não foi capaz de detectar defeitos ou gerar falsos positivos para os defeitos relacionados à CWE 835 presentes nos casos de teste.
@@ -143,10 +145,10 @@ Dos 6 defeitos que existem em $R(f)$, a ferramenta RATS não foi capaz de detect
 
 \subsubsection{Resultados de $f$}
 
-A tabela \ref{tabela_rats} apresenta os resultados para a ferramenta RATS.
+A Tabela \ref{tabela_rats} apresenta os resultados para a ferramenta RATS.
 \begin{table}[h]
   \centering
-\begin{tabular}{| l | l |}
+\begin{tabular}{l | l}
   \hline
   Positivos & 0 \\ \hline
   Falsos Positivos & 0 \\ \hline
@@ -169,8 +171,9 @@ Como apenas 6 casos de teste estão disponíveis em $S$, utilizou-se $R(f) = S$,
 
 A análise fora realizada com os seguintes parâmetros:
 
-\lstinline{splint -standard -I juliet/testcasesupport/ -redef -warnposix -predboolint copia_cwe835/*}
+\lstinline{splint -standard -I juliet/testcasesupport/ -redef -warnposix}
 
+\lstinline{       -predboolint copia_cwe835/*}\\
 onde o comando \lstinline{-standard} habilita o nível de checagens necessário para ativar a detecção de loops infinitos, \lstinline{-I juliet/testcasesupport/} aponta o diretório com os cabeçalhos do Juliet\footnote{Juliet possui um diretório com arquivos de suporte para os casos de teste, que incluem definições de algumas funções de entrada e saída e funções para a execução de toda a suíte de testes em diferentes plataformas.} para algumas bibliotecas e alguns headers\footnote{Nem todos os programas de análise estática se preocupam em analisar arquivos incluídos no cabeçalho, porém, Splint o faz.}, \lstinline{-redef -warnposix -predboolint} suprimem avisos relacionados aos cabeçalhos e tipos de variáveis (nenhum deles tem qualquer relação com loops infinitos) e \lstinline{S_estudo_de_caso_1/} é o diretório contendo todos os casos de teste de $R(f)$.
 
 A saída da analise para os casos de teste de S apenas alertou problemas aos arquivos incluídos no cabeçalho e a alguns tipos de variáveis. Em seguida tais alertas foram suprimidos e nenhuma saída fora gerada pela ferramenta, ou seja, a ferramenta não foi capaz de detectar defeitos ou gerar falsos positivos para os defeitos relacionados à CWE 835 presentes nos casos de teste.
@@ -187,10 +190,10 @@ Dos 6 defeitos que existem em $R(f)$, a ferramenta Splint não foi capaz de dete
 
 \subsubsection{Resultados de $f$}
 
-A tabela \ref{tabela_splint} apresenta os resultados para a ferramenta Splint.
+A Tabela \ref{tabela_splint} apresenta os resultados para a ferramenta Splint.
 \begin{table}[h]
   \centering
-\begin{tabular}{| l | l |}
+\begin{tabular}{l | l}
   \hline
   Positivos & 0 \\ \hline
   Falsos Positivos & 0 \\ \hline
@@ -212,15 +215,16 @@ Como apenas 6 casos de teste estão disponíveis em $S$, utilizou-se $R(f) = S$,
 \subsubsection{Análise}
 
 A análise fora realizada com os seguintes parâmetros:
-\lstinline[mathescape=false]{yasca -p $YASCA_PLUGINS_PATH S_estudo_de_caso_1/},
-onde o comando \lstinline[mathescape=false]{-p $YASCA_PLUGINS_PATH} habilita as ferramentas de análise estática presentes no pacote padrão da ferramenta\footnote{Yasca trabalha com o conceito de plugins. Para este trabalho, nenhum plugin adicional fora instalado} da ferramenta, e \lstinline{S_estudo_de_caso_1/} é o diretório contendo todos os casos de teste de $R(f)$.
+
+\lstinline[mathescape=false]{yasca -p $YASCA_PLUGINS_PATH S_estudo_de_caso_1/}\\
+onde o comando \lstinline[mathescape=false]{-p $YASCA_PLUGINS_PATH} habilita as ferramentas de análise estática presentes no pacote padrão da ferramenta\footnote{Yasca trabalha com o conceito de plugins. Para este trabalho, nenhum plugin adicional fora instalado} da ferramenta, e a opção \lstinline{S_estudo_de_caso_1/} é o diretório contendo todos os casos de teste de $R(f)$.
 
 A saída da analise para os casos de teste de $S$ não foi capaz de detectar defeitos ou gerar falsos positivos.
 
 \subsubsection{Análise Traduzida para $L$: $L(f)$}
 
 Não houve saída satisfatória para geração de $L(f)$, de modo que 
-$L(f) = \lbrace\rbrace$
+$L(f) = \lbrace\rbrace$.
 
 \subsubsection{Avaliando a Análise: $L(S)$ vs $L(f)$}
 
@@ -228,10 +232,10 @@ Dos 6 defeitos que existem em $R(f)$, a ferramenta Yasca não foi capaz de detec
 
 \subsubsection{Resultados de $f$}
 
-A tabela \ref{tabela_yasca} apresenta os resultados para a ferramenta Yasca.
+A Tabela \ref{tabela_yasca} apresenta os resultados para a ferramenta Yasca.
 \begin{table}[h]
   \centering
-\begin{tabular}{| l | l |}
+\begin{tabular}{l | l}
   \hline
   Positivos & 0 \\ \hline
   Falsos Positivos & 0 \\ \hline
@@ -244,22 +248,23 @@ A tabela \ref{tabela_yasca} apresenta os resultados para a ferramenta Yasca.
 
 \subsection{Resultados de $F$}
 
-Nenhuma das ferramentas de $F$ foi capaz de detectar os defeitos de $S$, especificados em \nameref{apendice:eu1:LS}
+Nenhuma das ferramentas de $F$ foi capaz de detectar os defeitos de $S$, especificados em \nameref{apendice:eu1:LS}.
 
 \section{Avaliação de Análise Correta}
 
 A \textit{Sate V's Ockham Criteria}\footnote{\url{http://samate.nist.gov/SATE5OckhamCriteria.html}} foi uma trilha para avaliação de ferramentas de análise estática correta durante a realização do SATE V\footnote{\url{http://samate.nist.gov/SATE5.html}} em Março de 2014.
 
-Embora todo o processo de avaliação tenha sido definido ao longo da própria avaliação, de modo que replicá-lo pode ser uma tarefa não trivial, resultados finais foram alcançados com sucesso\footnote{Referências pendentes devido à não publicação dos resultados da Ockham Criteria. Note que o autor deste trabalho é coautor de tais resultados e participou ativamente do processo de avaliação da Ockham Criteria}.
-
-Os critérios da Ockham Criteria estão bem definidos na chamada de trabalho;
-A Única ferramenta a participar da avaliação foi a Frama-C\footnote{\url{http://frama-c.com/}};
-Baseado em especificações de quais CWE a ferramenta era capaz de tratar, selecionou-se um Conjunto de casos de testes do Juliet, e de tal conjunto, extraiu-se uma amostra aleatória;
-Optou-se por não utilizar nenhuma linguagem existente para comparação dos casos de teste com os relatórios de defeitos das ferramentas, ao invés disso, desenvolveu-se tal linguagem de forma iterativa ao longo da avaliação;
-Os desenvolvedores das ferramentas participantes tiveram um período razoável para rodarem suas análises na suíte de testes, calibrando suas ferramentas como desejassem, fornecendo ao NIST apenas os relatórios de defeitos encontrados ao fim do período especificado;
-A equipe que avaliou as ferramentas traduziu tanto os casos de teste quanto os relatórios de teste para uma linguagem comum;
-Utilizando de ferramentas do projeto GNU\footnote{\url{gnu.org}}, compararam-se os casos de testes e seus defeitos conhecidos com os relatórios de erros.
-Verificou-se se a ferramenta analisada realizou análise correta baseado nos critérios preestabelecidos.
+Embora todo o processo de avaliação tenha sido definido ao longo da própria avaliação, de modo que replicá-lo pode ser uma tarefa não trivial, resultados finais foram alcançados com sucesso\footnote{Referências pendentes devido à não publicação dos resultados da Ockham Criteria. Note que o autor deste trabalho é coautor de tais resultados e participou ativamente do processo de avaliação da Ockham Criteria}. Abaixo segue, em linhas gerais, as etapas deste processo:
+\begin{enumerate}
+    \item os critérios da Ockham Criteria foram bem definidos na chamada de trabalho;
+    \item a única ferramenta a participar da avaliação foi a Frama-C\footnote{\url{http://frama-c.com/}};
+    \item baseado em especificações de quais CWE a ferramenta era capaz de tratar, selecionou-se um Conjunto de casos de testes do Juliet, e de tal conjunto, extraiu-se uma amostra aleatória;
+    \item optou-se por não utilizar nenhuma linguagem existente para comparação dos casos de teste com os relatórios de defeitos das ferramentas. Ao invés disso, desenvolveu-se tal linguagem de forma iterativa ao longo da avaliação;
+    \item os desenvolvedores das ferramentas participantes tiveram um período razoável para rodarem suas análises na suíte de testes, calibrando suas ferramentas como desejassem, fornecendo ao NIST apenas os relatórios de defeitos encontrados ao fim do período especificado;
+    \item a equipe que avaliou as ferramentas traduziu tanto os casos de teste quanto os relatórios de teste para uma linguagem comum;
+    \item Utilizando de ferramentas do projeto GNU\footnote{\url{gnu.org}}, compararam-se os casos de testes e seus defeitos conhecidos com os relatórios de erros.
+    \item Verificou-se se a ferramenta analisada realizou análise correta baseado nos critérios preestabelecidos.
+\end{enumerate}
 
 \subsection{Objetivos e Critérios de Análise}
 
@@ -272,17 +277,18 @@ A avaliação apresentada assemelha-se com a Ockham Criteria, porém
 \end{itemize}
 Deste modo os critérios para esta avaliação são:
 
-Precondição:
-\begin{itemize}
+\begin{enumerate}
+    \item Precondição:
+\begin{enumerate}
   \item A ferramenta se propõe a fazer análises corretas.
-\end{itemize}
+\end{enumerate}
 
-Pós-condições:
-\begin{itemize}
+    \item Pós-condições:
+\begin{enumerate}
   \item A ferramenta não produz nenhum falso negativo;
   \item um minimo de 60\% dos positivos apontados pela ferramenta, devem ser verdadeiros\footnote{Caso contrário, qualquer ferramenta que aponte todos os pontos de entrada para o defeito como defeituosos seriam consideradas ferramentas de análise correta. A Ockham Criteria possui um critério similar, porem relacionado também à possibilidade de não decisão das ferramentas que realizam análise correta, como provado por \cite{rice}. Note ainda que este valor de 60\% é baseado no mesmo valor para o critério similar da Ockham Criteria, que por sua vez é um valor completamente arbitrário dado que fora a primeira avaliação feita pelo NIST com ferramentas de análise estática. Consultando os resultados da Ockham para a Frama-C (estudo não publicado), nota-se que a menor porcentagem atingida pela mesma é de 80\% pars as CWE selecionadas}.
-\end{itemize}
-
+\end{enumerate}
+\end{enumerate}
 \subsection{Ferramentas}
 
 \subsubsection{Ferramentas Pré-candidatas}
@@ -296,7 +302,7 @@ A ferramenta Astrée é proprietária, de modo que fora descartada da avaliaçã
 Embora não seja 100\% Livre, a ferramenta Verasco atende à precondição de se proclamar uma ferramenta de análise correta, além de estar disponível para download de forma gratuita em \url{http://compcert.inria.fr/verasco/release/verasco-1.1.tgz}. Sendo assim, a ferramenta fora pré-selecionada. Ao se realizarem os primeiros testes com a mesma após instalação, notou-se que a documentação para tal ferramenta, seja formal ou informal\footnote{Artigos, internet, etc.}, é \textbf{inexistente}, de modo que realizar uma avaliação com tal ferramenta seria uma atividade custosa\footnote{Ao longo das avaliações conduzidas pelo NIST, são os desenvolvedores das ferramentas quem realizam as análises, além disto ferramentas de análise correta fazem provas matemáticas baseadas da especificação da linguagem, tornando a regulagem das ferramentas mais complexa}, de modo que a mesma não fora avaliada.
 
 A ferramenta Frama-C fora utilizada ao longo da Ockham Criteria no SATE V, portanto houve uma hesitação inicial em utilizá-la para a avaliação\footnote{Ao longo deste trabalho, os resultados da Ockham estavam em processo de publicação, de modo que existia a incerteza da possibilidade de se anexarem tais resultados à este trabalho.}, como não foram encontradas outras ferramentas para análise correta, optou-se por realizar esta avaliação com a Frama-C, de modo que
-$F = {Frama-C}$.
+$F = \{\mbox{Frama-C}\}$.
 
 \subsection{Suíte de Testes $S$}
 
@@ -307,7 +313,7 @@ Os casos de teste referentes à \textit{CWE 369 - Divide by Zero} compõe uma qu
 
   Os casos foram então selecionados para compor $S$, totalizando 684 casos de teste.
 
-  A lista de casos de teste que compõe a suíte de testes S está disponível em \nameref{apendice:eu2:S}
+  A lista de casos de teste que compõe a suíte de testes S está disponível em \nameref{apendice:eu2:S}.
 
   \subsection{Linguagem de Saída $L$}
 
@@ -316,7 +322,7 @@ Os casos de teste referentes à \textit{CWE 369 - Divide by Zero} compõe uma qu
 
   sendo que o terceiro campo referente à mensagem do defeito é opcional, uma vez que será removido para comparações entre os defeitos de $L(S)$ e $L(f)$ mas pode se mostrar útil para o depurar falsos positivos ou falsos negativos.
 
-  \subsection{Suíte de Testes em $L$: $L(S)$}
+  \subsection{Suíte de Testes em $L$: $L(S)$}.
 
   A suíte de testes Juliet marca os pontos de entrada para a CWE 369 com o seguinte comentário:
 
@@ -324,9 +330,9 @@ Os casos de teste referentes à \textit{CWE 369 - Divide by Zero} compõe uma qu
 
   O comentário acima pode aparecer dentro de 2 grupos condicionais, sendo um referente à macro \lstinline{#OMITBAD} e outro referente à macro \lstinline{#OMITGOOD}, quando o comentário que marca a fraqueza aparece no grupo condicional \lstinline{#OMITBAD}, a linha seguinte apresenta um ponto de entrada para a CWE 369 com uma instância da fraqueza e quando o mesmo comentário aparece no grupo condicional \lstinline{#OMITGOOD}, a linha seguinte apresenta um ponto de entrada para a mesma CWE, porém com a fraqueza corrigida.
 
-  Considerando os fatos apresentados compomos $L(S)$ com os trechos de códigos de $S$ contendo instâncias da CWE 369. O arquivo completo pode ser observado em \nameref{apendice:eu2:LS}
+  Considerando os fatos apresentados compomos $L(S)$ com os trechos de códigos de $S$ contendo instâncias da CWE 369. O arquivo completo pode ser observado em \nameref{apendice:eu2:LS}.
 
-  \subsection{$f = Frama-C$}
+  \subsection{$f = \{\mbox{Frama-C}\}$}
   \subsubsection{Casos de Teste para Análise: Um Subconjunto $R(f)$ de $S$}
 
   Dado o número de casos de teste em $S$, é possível realizar toda a avaliação em tempo razoável, de modo que foram utilizados todos os casos de teste de $S$ para a Frama-C.
@@ -337,7 +343,11 @@ Os casos de teste referentes à \textit{CWE 369 - Divide by Zero} compõe uma qu
   \subsubsection{Análise}
 
   A ferramenta Frama-C deve analisar cada um dos casos de testes individualmente para que sua análise se mostre significativa, de modo que para cada arquivo em $S$ executou-se
-  \lstinline[mathescape=false]{frama-c -cpp-extra-args="-I $juliet_dir -D INCLUDEMAIN=1" -val $source_file >> $report}.
+
+  \lstinline[mathescape=false]{frama-c -cpp-extra-args="-I juliet_dir -D INCLUDEMAIN=1"}
+
+    \lstinline{    -val source_file >> report}.
+
   Note que o parâmetro \lstinline{-I} é passado ao preprocessador de linguagem C utilizado pelo Juliet\footnote{O padrão aqui é o preprocessador do compilador GCC} com um diretório contendo cabeçalhos com assinaturas de funções utilizadas pelo Juliet. Além disso foi necessário definir a macro \lstinline{INCLUDEMAIN}, para que os casos de testes apresentassem definições da função \lstinline{main()} para o preprocessador. Por fim, o parâmetro \lstinline{-val} ativa o plugin \textit{Value analysis}\footnote{\url{http://frama-c.com/value.html}} da Frama-C, necessário para análises referentes à CWE em questão.
 
   A Frama-C realiza análises complexas, considerando diferentes possibilidades na para a árvore de execução do programa. Isto requer que se analisem também as definições para as funções utilizadas, de modo que para se utilizar todo o potencial da ferramenta, definições para as funções de bibliotecas de sistemas utilizadas nos casos de teste devem ser fornecidas. Dada a complexidade adicional, este passo não foi realizado e apresentaram impacto nos resultados finais desta análise.
@@ -356,18 +366,20 @@ Os casos de teste referentes à \textit{CWE 369 - Divide by Zero} compõe uma qu
 
   Comparando $L(S)$ com $L(f)$ temos:
 
-  As entradas presentes em ambos os conjuntos, ou seja, $L(S) \cap L(f)$ se referem aos acertos da ferramenta, ou seja, os positivos. Estes somaram 434 fraquezas, detalhadas em \nameref{apendice:eu2:positivo}.
+\begin{itemize}
+  \item As entradas presentes em ambos os conjuntos, ou seja, $L(S) \cap L(f)$ se referem aos acertos da ferramenta, ou seja, os positivos. Estes somaram 434 fraquezas, detalhadas em \nameref{apendice:eu2:positivo}.
 
-  As entradas presentes somente em $L(f)$, ou seja, $L(f) - L(S)$, são indicações erradas da ferramenta de instâncias da CWE 369, os falsos positivos. Estes somaram 432 \textit{warnings}, detalhados em \nameref{apendice:eu2:falso_positivo}
+  \item As entradas presentes somente em $L(f)$, ou seja, $L(f) - L(S)$, são indicações erradas da ferramenta de instâncias da CWE 369, os falsos positivos. Estes somaram 432 \textit{warnings}, detalhados em \nameref{apendice:eu2:falso_positivo}.
 
-  Por fim, as entradas presentes somente em $L(S)$, ou seja, $L(S) - L(f)$, são as instâncias da CWE 369 que a ferramenta não foi capaz de detectar, ou seja, os falsos negativos. Estes somaram 250 entradas, detalhadas em \nameref{apendice:eu2:falso_negativo}
+  \item Por fim, as entradas presentes somente em $L(S)$, ou seja, $L(S) - L(f)$, são as instâncias da CWE 369 que a ferramenta não foi capaz de detectar, ou seja, os falsos negativos. Estes somaram 250 entradas, detalhadas em \nameref{apendice:eu2:falso_negativo}.
+\end{itemize}
 
   \subsection{Resultados}
 
-A tabela \ref{tabela_framac1} apresenta os resultados para a ferramenta Frama-C.
+A Tabela \ref{tabela_framac1} apresenta os resultados para a ferramenta Frama-C.
 \begin{table}[h]
   \centering
-\begin{tabular}{| l | l |}
+\begin{tabular}{l | l}
   \hline
   Positivos & 434 \\ \hline
   Falsos Positivos & 432 \\ \hline
@@ -378,14 +390,14 @@ A tabela \ref{tabela_framac1} apresenta os resultados para a ferramenta Frama-C.
 \label{tabela_framac1}
 \end{table}
 
-Nota-se então que a quantidade de Falsos negativos não é 0, descaracterizando uma análise correta. Estes Falsos Negativos foram analisados e pôde-se perceber que todos dependem de retornos de funções de bibliotecas do sistema, como no caso de teste representado por \nameref{exemplo_cwe369}, retirado do caso de testes \lstinline{CWE369_Divide_by_Zero__int_fscanf_modulo_01.c},
+Nota-se então que a quantidade de Falsos negativos não é 0, descaracterizando uma análise correta. Estes Falsos Negativos foram analisados e pôde-se perceber que todos dependem de retornos de funções de bibliotecas do sistema, como no caso de teste representado por \nameref{exemplo_cwe369}, retirado do caso de testes que consta no arquivo \lstinline{CWE369_Divide_by_Zero__int_fscanf_modulo_01.c},
       \lstinputlisting[language=C, firstline=23, firstnumber=23, lastline=31, label=exemplo_cwe369, caption=CWE369 Divide by Zero]{dados/CWE369_Divide_by_Zero__int_fscanf_modulo_01.c}
       onde podemos perceber que sem uma definição da função \lstinline{fscanf}, a ferramenta não pode assumir que o valor do inteiro data é alterado, de modo que a ferramenta realiza um único teste onde data tem o valor $-1$ e não uma faixa variando do menor ao maior inteiro da arquitetura, que é o que acontece de fato, de modo que o valor pode receber 0, caracterizando instância da CWE 369. 
 
-      Para não penalizar a ferramenta dada a ausência das definições das funções de bibliotecas do sistema, que foram alertadas pela ferramenta em seu relatório final, não serão considerados os falsos negativos referentes a trechos dependentes de tais funções, de modo que os resultados para a Frama-C passam a ser representado pela tabela \ref{tabela_framac2},
+      Para não penalizar a ferramenta dada a ausência das definições das funções de bibliotecas do sistema, que foram alertadas pela ferramenta em seu relatório final, não serão considerados os falsos negativos referentes a trechos dependentes de tais funções, de modo que os resultados para a Frama-C passam a ser representado pela Tabela \ref{tabela_framac2},
 \begin{table}[h]
   \centering
-\begin{tabular}{| l | l |}
+\begin{tabular}{l | l}
   \hline
   Positivos & 434 \\ \hline
   Falsos Positivos & 432 \\ \hline
@@ -398,13 +410,13 @@ Nota-se então que a quantidade de Falsos negativos não é 0, descaracterizando
       de modo que a ferramenta cumpre a pós-condição de não gerar falsos negativos.
 
       A última pós-condição é referente à proporção de falsos positivos gerados pela ferramenta, de modo que
-      $P \geq 0.6(P + FP)$.
+      $P \geq 0,6(P + FP)$.
       Como 
       $434 < 520$,
       este critério não é atendido, de modo que a ferramenta não passa na avaliação.
 
       Fica evidente que a não aprovação da ferramenta se dá devido à falta de calibração da mesma, de modo que as definições das bibliotecas de sistema deveriam ter sido fornecidas, de modo que os 250 defeitos não detectados teriam, provavelmente, sido detectados, de modo que teríamos 684 positivos e para
-      $P \geq 0.6(P + FP)$,
+      $P \geq 0,6(P + FP)$,
       de modo que
       $684 > 670$
       e o critério teria sido atendido, resultando na aprovação da ferramenta como ferramenta de análise correta.
