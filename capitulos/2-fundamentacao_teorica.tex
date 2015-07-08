@@ -13,8 +13,9 @@ Análise estática de código é a análise de programas de computador sem a nec
 Ferramentas de análise estática podem inferir informações  acerca de um software sem a necessidade de executar o mesmo, tornando-as ferramentas adequadas para detecção de fraquezas no código \cite{vadim}. Deste modo, tais ferramentas se mostram um ponto razoável para que se possa buscar maior qualidade final do software \cite{sa_spec}.
 
 \textbf{Fraquezas} são defeitos de software provenientes do design, implementação ou outras áreas do ciclo de desenvolvimento do software. Em condições específicas, fraquezas podem contribuir para a introdução de \textbf{vulnerabilidades} no software. Quando ativadas, estas vulnerabilidades (manifestações de fraquezas) resultam em falhas de sistema, ou simplesmente falhas.
-
-``Muitas vezes os termos fraqueza e vulnerabilidade são confundidos ou as pessoas discordam de suas definições. As ferramentas de análise estática buscam por fraquezas no código, quando as pessoas, em grande parte das vezes, gostariam que elas buscassem por vulnerabilidades''\footnote{por Steven M. Christey, engenheiro de segurança da informação do MITRE em uma lista de discussão sobre segurança web disponível em \url{http://lists.webappsec.org/pipermail/websecurity_lists.webappsec.org/2011-November/008118.html}}.
+\begin{citacao}
+Muitas vezes os termos fraqueza e vulnerabilidade são confundidos ou as pessoas discordam de suas definições. As ferramentas de análise estática buscam por fraquezas no código, quando as pessoas, em grande parte das vezes, gostariam que elas buscassem por vulnerabilidades\footnote{por Steven M. Christey, engenheiro de segurança da informação do MITRE em uma lista de discussão sobre segurança web disponível em \url{http://lists.webappsec.org/pipermail/websecurity_lists.webappsec.org/2011-November/008118.html}}.
+\end{citacao}
 
 O MITRE é uma organização sem fins lucrativos que opera centros de pesquisa e desenvolvimento patrocinados pelo governo federal dos Estados Unidos da América. Uma das iniciativas do MITRE, patrocinada por um projeto de métricas de qualidade de software e avaliação de ferramentas (SAMATE - Software Assurance Metrics and Tool Evaluation), visa elaborar e manter um catálogo de fraquezas de software, onde as fraquezas de software conhecidas recebem uma definição formal e um número identificador. Tal catálogo de fraquezas é conhecido como Common Weakness Enumeration ou CWE\footnote{\url{cwe.mitre.org}}, e tem sido amplamente adotado para referenciar fraquezas de software, tanto na indústria quanto na academia.
 
@@ -29,12 +30,12 @@ Uma ferramenta ideal não cometeria erros, apontando todos os defeitos do códig
 \section{Métricas e Métricas de Segurança}
 
 Em \cite{nsa}, o CAS (Center for Assured Software) da Agência de Segurança Nacional (NSA – National Security Agency), centro de pesquisa criado para aumentar o nível de confiança de que os software utilizados pelo Departamento de Defesa dos Estados Unidos (DoD – Department of Defense) estão livres de vulnerabilidades \cite{nsa}, apresenta um conjunto de métricas para que se aplique sua metodologia. Das métricas apresentadas, algumas são de propósito geral, ou seja, independentes da natureza da suíte de testes ou mesmo da metodologia de testes empregada na análise, desde que sejam conhecidos todos os defeitos presentes no código a ser analisado. Ao realizar seu \textit{workshop} de avaliação de ferramentas, o SATE, o NIST utiliza este conjunto de métricas descrito pelo CAS para suas análises, como notado em \cite{sate_iv}. Essas métricas são:
+\begin{description}
+    \item[Positivos:] Quantidade total de defeitos reportados pela ferramenta que são de fato defeitos no código-fonte analisado.
 
-Positivos: Quantidade total de defeitos reportados pela ferramenta que são de fato defeitos no código-fonte analisado.
+    \item[Falsos Positivos:] Quantidade total de defeitos reportados pela ferramenta que não são defeitos no código-fonte analisado.
 
-Falsos Positivos: Quantidade total de defeitos reportados pela ferramenta que não são defeitos no código-fonte analisado.
-
-Falsos Negativos: Quantidade de defeitos presentes no código fonte que não foram reportados pela ferramenta.
+    \item[Falsos Negativos:] Quantidade de defeitos presentes no código fonte que não foram reportados pela ferramenta.
 
 Note que o conjunto que contém todos os Positivos e todos os Falsos Negativos, é o conjunto de todos os defeitos presentes no código-fonte. Tal conceito foi amplamente utilizado para as análises da Ockham Criteria\footnote{\url{http://samate.nist.gov/SATE5OckhamCriteria.html}} realizada na quinta edição do SATE\footnote{\url{http://samate.nist.gov/SATE5.html}}, pelo NIST, cujos resultados ainda não foram publicados. Chamaremos tal conjunto de Trechos Defeituosos, (Equação \eqref{eq1}),
 \begin{equation}\label{eq1}
@@ -44,7 +45,7 @@ TD = P + FN,
 
   No contexto da Ockham Criteria do SATE V do NIST, considera-se um defeito apenas se o mesmo for uma fraqueza, ou seja, um defeito só é considerado quando formalizado de acordo com o CWE, como mencionado   na Seção \nameref{fundamentacao_teorica:analise_estatica_de_codigo} do presente trabalho. Isso implica que a Equação \eqref{eq1} pode não ser verdadeira, dado que podem existir defeitos reportados pela ferramenta que não estejam mapeados em forma de CWE, ou ainda, que estejam sujeitos à interpretação das CWE, que como mencionado em \cite{yan} e notado ao longo dos trabalhos  da Ockham Criteria, nem sempre são definidas com precisão.
 
-  Precisão: Taxa de defeitos reportados para a quantidade total de defeitos presentes no código analisado.  Ela pode ser representada pela Equação \eqref{eq2},
+    \item[Precisão:] Taxa de defeitos reportados para a quantidade total de defeitos presentes no código analisado.  Ela pode ser representada pela Equação \eqref{eq2},
 \begin{equation}\label{eq2}
   P_r = \frac{P}{P + FP}
 \end{equation}
@@ -52,29 +53,25 @@ TD = P + FN,
 
   A precisão indica a capacidade da ferramenta de identificar defeitos. Note que a precisão é indefinida quando uma ferramenta não reporta erros \cite{nsa}, pois $P = 0$, e $FP = 0$, de modo que $P_r = \frac{0}{0}$. Quando definida, $0 \leq Pr \leq 1$.
 
-  Corretude: Corresponde à fração de defeitos reais reportados pela ferramenta. É definida como o número de Positivos dividido pela quantidade de Trechos Defeituosos existentes no código, conforme apresenta a Equação \eqref{eq3},
+  \item[Corretude:] Corresponde à fração de defeitos reais reportados pela ferramenta. É definida como o número de Positivos dividido pela quantidade de Trechos Defeituosos existentes no código, conforme apresenta a Equação \eqref{eq3},
 \begin{equation}\label{eq3}
-  C\_r = \frac{P}{P + FN},
+  C_r = \frac{P}{P + FN},
 \end{equation}
-  onde $C_r$ é a Corretude, $P$ o número de positivos e $FN$ o número de negativos.
-
-  ou, em casos onde a equação \eqref{eq1} for verdadeira, de acordo com a Equação \eqref{eq4}.
+  onde $C_r$ é a Corretude, $P$ o número de positivos e $FN$ o número de negativos, ou, em casos onde a Equação \eqref{eq1} for verdadeira, de acordo com a Equação \eqref{eq4}.
 \begin{equation}\label{eq4}
-  C_r = \frac{P}{TD},
+  C_r = \frac{P}{TD}.
 \end{equation}
-  onde $C_r$ é a Corretude, $P$ o número de positivos e $FN$ o número de negativos.
 
   Valores altos de corretude indicam que a ferramenta identifica grande parte dos defeitos corretamente. Note que $0 \leq C_r \leq 1$.
 
   Uma ferramenta que apresenta Corretude igual a 1 (um) na maior parte das análise é, possivelmente, uma ferramenta de análise estática correta. Uma ferramenta é considerada não correta se sua Corretude  menor do que 1 para uma dada análise.
 
-  F-score: Média harmônica da Correção e Precisão. O F-score auxilia no julgamento de uma ferramenta de análise estática verificando a quantidade de defeitos capturados e quanto ruído foi gerado no processo (falsos positivos). Utiliza-se a media harmônica de modo a prover pontuação justa para ferramentas que com bons resultados tanto para Corretude quanto para Precisão (Uma ferramenta com Corretude alta e Precisão baixa não teria melhores resultados que uma ferramenta mediana para ambas as métricas). O cálculo do F-score é apresentado na Equação \eqref{eq5}.
+  \item[F-score:] Média harmônica da Correção e Precisão. O F-score auxilia no julgamento de uma ferramenta de análise estática verificando a quantidade de defeitos capturados e quanto ruído foi gerado no processo (falsos positivos). Utiliza-se a media harmônica de modo a prover pontuação justa para ferramentas que com bons resultados tanto para Corretude quanto para Precisão (Uma ferramenta com Corretude alta e Precisão baixa não teria melhores resultados que uma ferramenta mediana para ambas as métricas). O cálculo do F-score é apresentado na Equação \eqref{eq5},
 \begin{equation}\label{eq5}
-  F_s = 2(\frac{P \times C_r}{P + C_r})
+  F_s = 2\left(\frac{P \times C_r}{P + C_r}\right)
 \end{equation}
-  onde $C_r$ é a Corretude, $P$ o número de positivos e $FN$ o número de negativos.
-
-  onde $F_s$ é o F-score, $P$ a precisão e $C_r$ a Corretude.
+onde $F_s$ é o F-score, $P$ a precisão e $C_r$ a Corretude.
+\end{description}
 
   Existem outras métricas que são relevantes apenas para análises que utilizem suítes de teste como a proposta pelo CAS em \cite{nsa}, também descrita em \cite{juliet}. A mesma se trata de uma suíte de testes composta de casos de teste artificiais ou sintéticos, que são definidos posteriormente, na Seção \nameref{fundamentacao_teorica:bases_de_testes_de_vulnerabilidades}.
 
