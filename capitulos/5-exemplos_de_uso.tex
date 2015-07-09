@@ -8,12 +8,12 @@ A avaliação presente foi feita de forma independente, sem qualquer tipo de con
 
 \subsection{Objetivos e Critérios de Avaliação}
 
-Esta avaliação tem como objetivo comparar ferramentas de análise estática de licenças Livres quanto à detecção de Loops Infinitos em código escrito em linguagem C, fraqueza mapeada como CWE, identificada pela CWE 835\footnote{\url{http://cwe.mitre.org/data/definitions/835.html}}.
+Esta avaliação tem como objetivo comparar ferramentas de análise estática de licenças Livres quanto à detecção de \textit{Loops} Infinitos em código escrito em linguagem C, fraqueza mapeada como CWE, identificada pela CWE 835\footnote{\url{http://cwe.mitre.org/data/definitions/835.html}}.
 
 Pre-condições:
 \begin{itemize}
   \item A ferramenta deve ser Livre;
-  \item A ferramenta deve declarar explicitamente sua capacidade de detectar loops infinitos, ou ao menos não declarar sua incapacidade para detectar tal categoria de fraqueza;
+  \item A ferramenta deve declarar explicitamente sua capacidade de detectar \textit{loops} infinitos, ou ao menos não declarar sua incapacidade para detectar tal categoria de fraqueza;
   \item A ferramenta deve ser capaz de rodar em plataformas GNU/Linux x86 64 bits;
   \item A ferramenta deve ser capaz de analisar código C.
 \end{itemize}
@@ -36,7 +36,7 @@ Analisando a disponibilidade das ferramentas de modo a eliminar todas que não a
 
 As ferramentas BOON e Csur não apresentam detalhes de suas licenças ou deixam claro que há restrições de uso quanto às mesmas, de modo que foram descartadas da avaliação.
 
-As ferramentas Clang Static Analyzer, CQual, Flawfinder, Smatch e UNO apresentam licenças livres, porém apresentam fins específicos em suas documentações, que não incluem a detecção de Loops Infinitos, definido pela CWE 835, sendo assim, estas ferramentas também foram descartadas da análise.
+As ferramentas Clang Static Analyzer, CQual, Flawfinder, Smatch e UNO apresentam licenças livres, porém apresentam fins específicos em suas documentações, que não incluem a detecção de \textit{Loops} Infinitos, definido pela CWE 835, sendo assim, estas ferramentas também foram descartadas da análise.
 
 Já as ferramentas, Cppcheck\footnote{\url{http://sourceforge.net/projects/cppcheck/}}, RATS\footnote{\url{https://code.google.com/p/rough-auditing-tool-for-security/}} e Yasca\footnote{\url{http://www.scovetta.com/yasca.html}}, possuem licenças livres e não especificam os tipos de defeitos que são capazes de detectar. Todas elas são capazes de analisar código em linguagem C e são compatíveis com GNU/Linux, de modo que atendem todas as precondições da avaliação e serão avaliadas. Além destas 3 ferramentas mencionadas, a ferramenta Splint\footnote{\url{http://splint.org/}} também atende a todos os critérios e apresenta de maneira explícita em sua documentação a capacidade de detectar Loops Infinitos, ou seja, a ferramenta Splint também será avaliada, pois atende às precondições de avaliação.
 
@@ -174,7 +174,7 @@ A análise fora realizada com os seguintes parâmetros:
 \lstinline{splint -standard -I juliet/testcasesupport/ -redef -warnposix}
 
 \lstinline{       -predboolint copia_cwe835/*}\\
-onde o comando \lstinline{-standard} habilita o nível de checagens necessário para ativar a detecção de loops infinitos, \lstinline{-I juliet/testcasesupport/} aponta o diretório com os cabeçalhos do Juliet\footnote{Juliet possui um diretório com arquivos de suporte para os casos de teste, que incluem definições de algumas funções de entrada e saída e funções para a execução de toda a suíte de testes em diferentes plataformas.} para algumas bibliotecas e alguns headers\footnote{Nem todos os programas de análise estática se preocupam em analisar arquivos incluídos no cabeçalho, porém, Splint o faz.}, \lstinline{-redef -warnposix -predboolint} suprimem avisos relacionados aos cabeçalhos e tipos de variáveis (nenhum deles tem qualquer relação com loops infinitos) e \lstinline{S_estudo_de_caso_1/} é o diretório contendo todos os casos de teste de $R(f)$.
+onde o comando \lstinline{-standard} habilita o nível de checagens necessário para ativar a detecção de \textit{loops} infinitos, \lstinline{-I juliet/testcasesupport/} aponta o diretório com os cabeçalhos do Juliet\footnote{Juliet possui um diretório com arquivos de suporte para os casos de teste, que incluem definições de algumas funções de entrada e saída e funções para a execução de toda a suíte de testes em diferentes plataformas.} para algumas bibliotecas e alguns headers\footnote{Nem todos os programas de análise estática se preocupam em analisar arquivos incluídos no cabeçalho, porém, Splint o faz.}, \lstinline{-redef -warnposix -predboolint} suprimem avisos relacionados aos cabeçalhos e tipos de variáveis (nenhum deles tem qualquer relação com \textit{loops} infinitos) e \lstinline{S_estudo_de_caso_1/} é o diretório contendo todos os casos de teste de $R(f)$.
 
 A saída da analise para os casos de teste de S apenas alertou problemas aos arquivos incluídos no cabeçalho e a alguns tipos de variáveis. Em seguida tais alertas foram suprimidos e nenhuma saída fora gerada pela ferramenta, ou seja, a ferramenta não foi capaz de detectar defeitos ou gerar falsos positivos para os defeitos relacionados à CWE 835 presentes nos casos de teste.
 
@@ -217,7 +217,7 @@ Como apenas 6 casos de teste estão disponíveis em $S$, utilizou-se $R(f) = S$,
 A análise fora realizada com os seguintes parâmetros:
 
 \lstinline[mathescape=false]{yasca -p $YASCA_PLUGINS_PATH S_estudo_de_caso_1/}\\
-onde o comando \lstinline[mathescape=false]{-p $YASCA_PLUGINS_PATH} habilita as ferramentas de análise estática presentes no pacote padrão da ferramenta\footnote{Yasca trabalha com o conceito de plugins. Para este trabalho, nenhum plugin adicional fora instalado} da ferramenta, e a opção \lstinline{S_estudo_de_caso_1/} é o diretório contendo todos os casos de teste de $R(f)$.
+onde o comando \lstinline[mathescape=false]{-p $YASCA_PLUGINS_PATH} habilita as ferramentas de análise estática presentes no pacote padrão da ferramenta\footnote{Yasca trabalha com o conceito de \textit{plugins}. Para este trabalho, nenhum \textit{plugin} adicional fora instalado} da ferramenta, e a opção \lstinline{S_estudo_de_caso_1/} é o diretório contendo todos os casos de teste de $R(f)$.
 
 A saída da analise para os casos de teste de $S$ não foi capaz de detectar defeitos ou gerar falsos positivos.
 
@@ -254,9 +254,9 @@ Nenhuma das ferramentas de $F$ foi capaz de detectar os defeitos de $S$, especif
 
 A \textit{Sate V's Ockham Criteria}\footnote{\url{http://samate.nist.gov/SATE5OckhamCriteria.html}} foi uma trilha para avaliação de ferramentas de análise estática correta durante a realização do SATE V\footnote{\url{http://samate.nist.gov/SATE5.html}} em Março de 2014.
 
-Embora todo o processo de avaliação tenha sido definido ao longo da própria avaliação, de modo que replicá-lo pode ser uma tarefa não trivial, resultados finais foram alcançados com sucesso\footnote{Referências pendentes devido à não publicação dos resultados da Ockham Criteria. Note que o autor deste trabalho é coautor de tais resultados e participou ativamente do processo de avaliação da Ockham Criteria}. Abaixo segue, em linhas gerais, as etapas deste processo:
+Embora todo o processo de avaliação tenha sido definido ao longo da própria avaliação, de modo que replicá-lo pode ser uma tarefa não trivial, resultados finais foram alcançados com sucesso\footnote{Referências pendentes devido à não publicação dos resultados da \textit{Ockham Criteria}. Note que o autor deste trabalho é coautor de tais resultados e participou ativamente do processo de avaliação da \textit{Ockham Criteria}}. Abaixo segue, em linhas gerais, as etapas deste processo:
 \begin{enumerate}
-    \item os critérios da Ockham Criteria foram bem definidos na chamada de trabalho;
+  \item os critérios da \textit{Ockham Criteria} foram bem definidos na chamada de trabalho;
     \item a única ferramenta a participar da avaliação foi a Frama-C\footnote{\url{http://frama-c.com/}};
     \item baseado em especificações de quais CWE a ferramenta era capaz de tratar, selecionou-se um Conjunto de casos de testes do Juliet, e de tal conjunto, extraiu-se uma amostra aleatória;
     \item optou-se por não utilizar nenhuma linguagem existente para comparação dos casos de teste com os relatórios de defeitos das ferramentas. Ao invés disso, desenvolveu-se tal linguagem de forma iterativa ao longo da avaliação;
@@ -268,9 +268,9 @@ Embora todo o processo de avaliação tenha sido definido ao longo da própria a
 
 \subsection{Objetivos e Critérios de Análise}
 
-Esta avaliação tem como objetivo constatar, assim como a Ockham Criteria utilizada pelo NIST ao longo do SATE V, que uma ferramenta é capaz de realizar análise correta para uma dada categoria de defeitos.
+Esta avaliação tem como objetivo constatar, assim como a \textit{Ockham Criteria} utilizada pelo NIST ao longo do SATE V, que uma ferramenta é capaz de realizar análise correta para uma dada categoria de defeitos.
 
-A avaliação apresentada assemelha-se com a Ockham Criteria, porém
+A avaliação apresentada assemelha-se com a \textit{Ockham Criteria}, porém
 \begin{itemize}
   \item apresenta simplificações;
   \item utiliza a metodologia proposta neste trabalho.
@@ -286,7 +286,7 @@ Deste modo os critérios para esta avaliação são:
     \item Pós-condições:
 \begin{enumerate}
   \item A ferramenta não produz nenhum falso negativo;
-  \item um minimo de 60\% dos positivos apontados pela ferramenta, devem ser verdadeiros\footnote{Caso contrário, qualquer ferramenta que aponte todos os pontos de entrada para o defeito como defeituosos seriam consideradas ferramentas de análise correta. A Ockham Criteria possui um critério similar, porem relacionado também à possibilidade de não decisão das ferramentas que realizam análise correta, como provado por \cite{rice}. Note ainda que este valor de 60\% é baseado no mesmo valor para o critério similar da Ockham Criteria, que por sua vez é um valor completamente arbitrário dado que fora a primeira avaliação feita pelo NIST com ferramentas de análise estática. Consultando os resultados da Ockham para a Frama-C (estudo não publicado), nota-se que a menor porcentagem atingida pela mesma é de 80\% pars as CWE selecionadas}.
+  \item um minimo de 60\% dos positivos apontados pela ferramenta, devem ser verdadeiros\footnote{Caso contrário, qualquer ferramenta que aponte todos os pontos de entrada para o defeito como defeituosos seriam consideradas ferramentas de análise correta. A \textit{Ockham Criteria} possui um critério similar, porem relacionado também à possibilidade de não decisão das ferramentas que realizam análise correta, como provado por \cite{rice}. Note ainda que este valor de 60\% é baseado no mesmo valor para o critério similar da \textit{Ockham Criteria}, que por sua vez é um valor completamente arbitrário dado que fora a primeira avaliação feita pelo NIST com ferramentas de análise estática. Consultando os resultados da \textit{Ockham} para a Frama-C (estudo não publicado), nota-se que a menor porcentagem atingida pela mesma é de 80\% pars as CWE selecionadas}.
 \end{enumerate}
 \end{enumerate}
 \subsection{Ferramentas}
@@ -301,12 +301,12 @@ A ferramenta Astrée é proprietária, de modo que fora descartada da avaliaçã
 
 Embora não seja 100\% Livre, a ferramenta Verasco atende à precondição de se proclamar uma ferramenta de análise correta, além de estar disponível para download de forma gratuita em \url{http://compcert.inria.fr/verasco/release/verasco-1.1.tgz}. Sendo assim, a ferramenta fora pré-selecionada. Ao se realizarem os primeiros testes com a mesma após instalação, notou-se que a documentação para tal ferramenta, seja formal ou informal\footnote{Artigos, internet, etc.}, é \textbf{inexistente}, de modo que realizar uma avaliação com tal ferramenta seria uma atividade custosa\footnote{Ao longo das avaliações conduzidas pelo NIST, são os desenvolvedores das ferramentas quem realizam as análises, além disto ferramentas de análise correta fazem provas matemáticas baseadas da especificação da linguagem, tornando a regulagem das ferramentas mais complexa}, de modo que a mesma não fora avaliada.
 
-A ferramenta Frama-C fora utilizada ao longo da Ockham Criteria no SATE V, portanto houve uma hesitação inicial em utilizá-la para a avaliação\footnote{Ao longo deste trabalho, os resultados da Ockham estavam em processo de publicação, de modo que existia a incerteza da possibilidade de se anexarem tais resultados à este trabalho.}, como não foram encontradas outras ferramentas para análise correta, optou-se por realizar esta avaliação com a Frama-C, de modo que
+A ferramenta Frama-C fora utilizada ao longo da \textit{Ockham Criteria} no SATE V, portanto houve uma hesitação inicial em utilizá-la para a avaliação\footnote{Ao longo deste trabalho, os resultados da \textit{Ockham} estavam em processo de publicação, de modo que existia a incerteza da possibilidade de se anexarem tais resultados à este trabalho.}, como não foram encontradas outras ferramentas para análise correta, optou-se por realizar esta avaliação com a Frama-C, de modo que
 $F = \{\mbox{Frama-C}\}$.
 
 \subsection{Suíte de Testes $S$}
 
-Assim como no primeiro exemplo de uso, será utilizado como $S$, um subconjunto da suíte de testes Juliet. Para evitar a pequena quantidade de casos de teste do primeiro exemplo de uso e selecionar uma CWE de análise de menor complexidade\footnote{Avaliar a análise de ferramentas para algumas CWE, como Heap Overflow, pode-se mostrar uma tarefa complexa, dado que exige profunda compreensão das especificações da linguagem para diferenciar positivos de falsos positivos relacionados à outros defeitos\footnote{Embora o Juliet apresente apenas 1 defeito por caso de teste, uma ferramenta pode apontar, por exemplo, um defeito relacionado à outra classe de fraquezas no mesmo ponto de entrada do defeito apresentado em um caso de testes, não gerando um positivo para o defeito relevante à análise}. Como avaliar a ferramenta não é o objetivo real deste estudo como explicitado nos Objetivos em \nameref{introducao}, optou-se por análises mais simples.}, os arquivos referentes à linguagem C para cada CWE no Juliet foram contados, de modo a obter-se uma lista com a quantidade de arquivos de código-fonte em linguagem C presentes no Juliet para cada CWE, o resultado se encontra no apêndice \nameref{apendice:juliet_em_numeros_C}.
+Assim como no primeiro exemplo de uso, será utilizado como $S$, um subconjunto da suíte de testes Juliet. Para evitar a pequena quantidade de casos de teste do primeiro exemplo de uso e selecionar uma CWE de análise de menor complexidade\footnote{Avaliar a análise de ferramentas para algumas CWE, como \textit{Heap Overflow}, pode-se mostrar uma tarefa complexa, dado que exige profunda compreensão das especificações da linguagem para diferenciar positivos de falsos positivos relacionados à outros defeitos\footnote{Embora o Juliet apresente apenas 1 defeito por caso de teste, uma ferramenta pode apontar, por exemplo, um defeito relacionado à outra classe de fraquezas no mesmo ponto de entrada do defeito apresentado em um caso de testes, não gerando um positivo para o defeito relevante à análise}. Como avaliar a ferramenta não é o objetivo real deste estudo como explicitado nos Objetivos em \nameref{introducao}, optou-se por análises mais simples.}, os arquivos referentes à linguagem C para cada CWE no Juliet foram contados, de modo a obter-se uma lista com a quantidade de arquivos de código-fonte em linguagem C presentes no Juliet para cada CWE, o resultado se encontra no apêndice \nameref{apendice:juliet_em_numeros_C}.
 
 Os casos de teste referentes à \textit{CWE 369 - Divide by Zero} compõe uma quantidade de arquivos em linguagem C significativa (1008), além de terem sido utilizados na avaliação da Frama-C no SATE V. Note que os próprios desenvolvedores da Frama C selecionaram as CWE a serem incluídas nas análises e dado que a CWE 369 fora selecionada, um pode inferir que as funcionalidades de detecção de fraquezas relacionadas à mesma estão presentes. Deste modo, a suíte de testes $S$ poderia ser composta pelos casos de teste referentes à CWE 369 correspondentes à linguagem C, porém alguns casos de teste apenas chamam funções de outros casos de teste variando algum parâmetro.  A Frama-C detecta defeitos nas definições das funções e não no momento em que são chamadas, quando tratando de problemas com operações aritméticas binárias\footnote{segundo \cite{kernighan}, estas são +, -, *, / e \%.}, deste modo, apenas os casos de teste que contém de fato instâncias da CWE 369 definidas serão incluídos em $S$, de modo que  $S$ passa a ser composta apenas dos casos de teste presentes no subconjunto do Juliet CWE369 que contém marcações com referências à instâncias da CWE, ou seja, arquivos de código-fonte em linguagem C com o seguinte comentário:
   \lstinline{/* POTENTIAL FLAW: Possibly divide by zero */}.
@@ -348,7 +348,7 @@ Os casos de teste referentes à \textit{CWE 369 - Divide by Zero} compõe uma qu
 
     \lstinline{    -val source_file >> report}.
 
-  Note que o parâmetro \lstinline{-I} é passado ao preprocessador de linguagem C utilizado pelo Juliet\footnote{O padrão aqui é o preprocessador do compilador GCC} com um diretório contendo cabeçalhos com assinaturas de funções utilizadas pelo Juliet. Além disso foi necessário definir a macro \lstinline{INCLUDEMAIN}, para que os casos de testes apresentassem definições da função \lstinline{main()} para o preprocessador. Por fim, o parâmetro \lstinline{-val} ativa o plugin \textit{Value analysis}\footnote{\url{http://frama-c.com/value.html}} da Frama-C, necessário para análises referentes à CWE em questão.
+    Note que o parâmetro \lstinline{-I} é passado ao preprocessador de linguagem C utilizado pelo Juliet\footnote{O padrão aqui é o preprocessador do compilador GCC} com um diretório contendo cabeçalhos com assinaturas de funções utilizadas pelo Juliet. Além disso foi necessário definir a macro \lstinline{INCLUDEMAIN}, para que os casos de testes apresentassem definições da função \lstinline{main()} para o preprocessador. Por fim, o parâmetro \lstinline{-val} ativa o \textit{plugin} \textit{Value analysis}\footnote{\url{http://frama-c.com/value.html}} da Frama-C, necessário para análises referentes à CWE em questão.
 
   A Frama-C realiza análises complexas, considerando diferentes possibilidades na para a árvore de execução do programa. Isto requer que se analisem também as definições para as funções utilizadas, de modo que para se utilizar todo o potencial da ferramenta, definições para as funções de bibliotecas de sistemas utilizadas nos casos de teste devem ser fornecidas. Dada a complexidade adicional, este passo não foi realizado e apresentaram impacto nos resultados finais desta análise.
 

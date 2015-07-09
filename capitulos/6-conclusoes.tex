@@ -5,7 +5,7 @@
 
 \subsection*{Exemplo de Uso 1 - Avaliação de Ferramentas Livres}
 
-Três das ferramentas avaliadas, Cppcheck, RATS e Yasca, não mencionam a capacidade de detecção de loops infinitos, de modo que é compreensível a não detecção dos defeitos a elas apresentados.  Já ferramenta Splint é a única que se apresenta explicitamente em sua documentação como capaz de detectar loops infinitos, porém não fora capaz de detectar o defeito em nenhum dos casos de teste. Uma lista de discussão da Universidade de Virgínia traz uma discussão a respeito da não detecção de loops infinitos\footnote{\url{http://www.cs.virginia.edu/pipermail/splint-discuss/2008-November/001248.html}} com esta ferramenta, algumas das justificativas para o que consideramos um Falso Negativo é que alguns deles não se tratam de loops infinitos, dado que em um \textit{loop} como em \nameref{undefined_for} abaixo,
+Três das ferramentas avaliadas, Cppcheck, RATS e Yasca, não mencionam a capacidade de detecção de \textit{loops} infinitos, de modo que é compreensível a não detecção dos defeitos a elas apresentados.  Já ferramenta Splint é a única que se apresenta explicitamente em sua documentação como capaz de detectar \textit{loops} infinitos, porém não fora capaz de detectar o defeito em nenhum dos casos de teste. Uma lista de discussão da Universidade de Virgínia traz uma discussão a respeito da não detecção de \textit{loops} infinitos\footnote{\url{http://www.cs.virginia.edu/pipermail/splint-discuss/2008-November/001248.html}} com esta ferramenta, algumas das justificativas para o que consideramos um Falso Negativo é que alguns deles não se tratam de \textit{loops} infinitos, dado que em um \textit{loop} como em \nameref{undefined_for} abaixo,
 \begin{lstlisting}[language=C,caption=Exemplo de loop indefinido,label=undefined_for]
 int i = 0;
 for(i = 0; i >= 0; i++)
@@ -30,7 +30,7 @@ Seria interessante obter os resultados das análises de ferramentas proprietári
 
 No segundo exemplo de uso houveram falhas na calibração da ferramenta, como apresentado nos resultados da avaliação. Dada a natureza da análise de ferramentas de analise correta, sua calibração torna-se complexa, o que justifica a necessidade da presença dos desenvolvedores das ferramentas durante avaliações oficiais.
 
-Note que $S$ é diferente do $S$ utilizado na Ockham criteria, portanto os números são diferentes\footnote{ao longo da Ockam Criteria utilizava-se um $S$ com casos de testes de diversas CWE diferentes para a ferramenta.}.
+Note que $S$ é diferente do $S$ utilizado na \textit{Ockham Criteria}, portanto os números são diferentes\footnote{ao longo da \textit{Ockham Criteria} utilizava-se um $S$ com casos de testes de diversas CWE diferentes para a ferramenta.}.
 
 Independente dos resultados para a ferramenta avaliada, a avaliação foi bem sucedida no que tange a aplicação da metodologia apresentada neste trabalho, com suas etapas bem definidas, o que viabilizou um fluxo de trabalho simples e replicável. 
 

@@ -82,7 +82,7 @@ scanf ("%s", last_name);
 /* trecho retirado da definição da CWE 120 disponível em http://cwe.mitre.org/data/definitions/120.html */
 \end{lstlisting}
 
-Note que, se \lstinline{last_name} for maior que 20 vezes \lstinline{sizeof(char)}, o buffer seria excedido, caracterizando um buffer overflow. Sabendo disso, uma linguagem comum, definida em YAML\footnote{\url{http://yaml.org/}}, poderia se representado como demonstrado a seguir, em \nameref{relatorio_cwe120}.
+Note que, se \lstinline{last_name} for maior que 20 vezes \lstinline{sizeof(char)}, o \textit{buffer} seria excedido, caracterizando um \textit{buffer overflow}. Sabendo disso, uma linguagem comum, definida em YAML\footnote{\url{http://yaml.org/}}, poderia se representado como demonstrado a seguir, em \nameref{relatorio_cwe120}.
 
 \begin{lstlisting}[caption=Relatório de erros do Exemplo de CWE 120,label=relatorio_cwe120]
 arquivo: teste.c
@@ -101,7 +101,7 @@ linha: 3
 defeito: uso indevido de scanf
 \end{lstlisting}
 
-Ao se compararem os relatórios acima manualmente, é possível inferir que tratam do mesmo defeito, porém existiria neste caso um esforço manual grande para que se comparem todos os defeitos do código com aqueles apontados pela ferramenta. Uma opção seria comparar apenas os arquivos e as linhas para um caso de teste contendo apenas um defeito por arquivo, mas ainda assim haveria a necessidade de inspeção manual, dado que algumas ferramentas podem alertar o defeito na hora de escrita no buffer e outras apenas no momento em que o buffer for utilizado.
+Ao se compararem os relatórios acima manualmente, é possível inferir que tratam do mesmo defeito, porém existiria neste caso um esforço manual grande para que se comparem todos os defeitos do código com aqueles apontados pela ferramenta. Uma opção seria comparar apenas os arquivos e as linhas para um caso de teste contendo apenas um defeito por arquivo, mas ainda assim haveria a necessidade de inspeção manual, dado que algumas ferramentas podem alertar o defeito na hora de escrita no \textit{buffer} e outras apenas no momento em que o \textit{buffer} for utilizado.
 
 Ao se adotar uma notação comum para os defeitos, como as CWE, dado que exista uma linguagem comum para relatar defeitos, pode-se ter, para ambos os casos, um relatório comum, como representado abaixo em \nameref{relatorio_comum}.
 \begin{lstlisting}[caption=Relatório comum, label=relatorio_comum]
