@@ -51,6 +51,7 @@ $F = \lbrace Cppcheck, RATS, Splint, Yasca\rbrace$
 O Juliet 1.2, disponível no SARD\footnote{Download disponível em \url{http://samate.nist.gov/SARD/testsuites/juliet/Juliet_Test_Suite_v1.2_for_C_Cpp.zip} e \url{http://samate.nist.gov/SARD/testsuites/juliet/Juliet_Test_Suite_v1.2_for_Java.zip}}, inclui um conjunto de casos de teste para a CWE 835. Visto que a avaliação tem como objetivo verificar a capacidade de detecção de tal CWE, consideraremos como suíte de testes $S$ o subconjunto de casos de teste que tratam da CWE 835 presente no Juliet 1.2 escritos em linguagem C. Estes casos de teste são encontrados em \lstinline{testcases/CWE835_Infinite_Loop/}. Sendo assim, os arquivos que compõe $S$ estão listados na Tabela \ref{tabela_S_eu1}.
 
 \begin{table}
+\caption{Conjunto S para Exemplo de Uso 1}
   \centering
 \begin{tabular}{l}
   \hline
@@ -62,7 +63,6 @@ O Juliet 1.2, disponível no SARD\footnote{Download disponível em \url{http://s
   \lstinline!CWE835_Infinite_Loop__while_01.c! \\ 
   \lstinline!CWE835_Infinite_Loop__while_true_01.c! \\ \hline
 \end{tabular}
-\caption{Conjunto S para Exemplo de Uso 1}
 \label{tabela_S_eu1}
 \end{table}
 
@@ -105,6 +105,7 @@ Dos 6 defeitos que existem em $R(f)$, a ferramenta Cppcheck não foi capaz de de
 
 A Tabela \ref{tabela_cppcheck} apresenta os resultados para a ferramenta Cppcheck.
 \begin{table}[h]
+\caption{Resultados: Cppcheck}
   \centering
 \begin{tabular}{l | l}
   \hline
@@ -113,7 +114,6 @@ A Tabela \ref{tabela_cppcheck} apresenta os resultados para a ferramenta Cppchec
   Falsos Negativos & 6 \\
   \hline
 \end{tabular}
-\caption{Resultados: Cppcheck}
 \label{tabela_cppcheck}
 \end{table}
 \subsection{$f = RATS$}
@@ -147,6 +147,7 @@ Dos 6 defeitos que existem em $R(f)$, a ferramenta RATS não foi capaz de detect
 
 A Tabela \ref{tabela_rats} apresenta os resultados para a ferramenta RATS.
 \begin{table}[h]
+\caption{Resultados: RATS}
   \centering
 \begin{tabular}{l | l}
   \hline
@@ -155,7 +156,6 @@ A Tabela \ref{tabela_rats} apresenta os resultados para a ferramenta RATS.
   Falsos Negativos & 6 \\
   \hline
 \end{tabular}
-\caption{Resultados: RATS}
 \label{tabela_rats}
 \end{table}
 
@@ -192,6 +192,7 @@ Dos 6 defeitos que existem em $R(f)$, a ferramenta Splint não foi capaz de dete
 
 A Tabela \ref{tabela_splint} apresenta os resultados para a ferramenta Splint.
 \begin{table}[h]
+\caption{Resultados: Splint}
   \centering
 \begin{tabular}{l | l}
   \hline
@@ -200,7 +201,6 @@ A Tabela \ref{tabela_splint} apresenta os resultados para a ferramenta Splint.
   Falsos Negativos & 6 \\
   \hline
 \end{tabular}
-\caption{Resultados: Splint}
 \label{tabela_splint}
 \end{table}
 
@@ -234,6 +234,7 @@ Dos 6 defeitos que existem em $R(f)$, a ferramenta Yasca não foi capaz de detec
 
 A Tabela \ref{tabela_yasca} apresenta os resultados para a ferramenta Yasca.
 \begin{table}[h]
+\caption{Resultados: Yasca}
   \centering
 \begin{tabular}{l | l}
   \hline
@@ -242,7 +243,6 @@ A Tabela \ref{tabela_yasca} apresenta os resultados para a ferramenta Yasca.
   Falsos Negativos & 6 \\
   \hline
 \end{tabular}
-\caption{Resultados: Yasca}
 \label{tabela_yasca}
 \end{table}
 
@@ -378,6 +378,7 @@ Os casos de teste referentes à \textit{CWE 369 - Divide by Zero} compõe uma qu
 
 A Tabela \ref{tabela_framac1} apresenta os resultados para a ferramenta Frama-C.
 \begin{table}[h]
+\caption{Resultados: Frama-C}
   \centering
 \begin{tabular}{l | l}
   \hline
@@ -386,16 +387,16 @@ A Tabela \ref{tabela_framac1} apresenta os resultados para a ferramenta Frama-C.
   Falsos Negativos & 250 \\
   \hline
 \end{tabular}
-\caption{Resultados: Frama-C}
 \label{tabela_framac1}
 \end{table}
 
 Nota-se então que a quantidade de Falsos negativos não é 0, descaracterizando uma análise correta. Estes Falsos Negativos foram analisados e pôde-se perceber que todos dependem de retornos de funções de bibliotecas do sistema, como no caso de teste representado por \nameref{exemplo_cwe369}, retirado do caso de testes que consta no arquivo \lstinline{CWE369_Divide_by_Zero__int_fscanf_modulo_01.c},
-      \lstinputlisting[language=C, firstline=23, firstnumber=23, lastline=31, label=exemplo_cwe369, caption=CWE369 Divide by Zero]{dados/CWE369_Divide_by_Zero__int_fscanf_modulo_01.c}
+      \lstinputlisting[breaklines=true, language=C, firstline=23, firstnumber=23, lastline=31, label=exemplo_cwe369, caption=CWE369 Divide by Zero]{dados/CWE369_Divide_by_Zero__int_fscanf_modulo_01.c}
       onde podemos perceber que sem uma definição da função \lstinline{fscanf}, a ferramenta não pode assumir que o valor do inteiro data é alterado, de modo que a ferramenta realiza um único teste onde data tem o valor $-1$ e não uma faixa variando do menor ao maior inteiro da arquitetura, que é o que acontece de fato, de modo que o valor pode receber 0, caracterizando instância da CWE 369. 
 
       Para não penalizar a ferramenta dada a ausência das definições das funções de bibliotecas do sistema, que foram alertadas pela ferramenta em seu relatório final, não serão considerados os falsos negativos referentes a trechos dependentes de tais funções, de modo que os resultados para a Frama-C passam a ser representado pela Tabela \ref{tabela_framac2},
 \begin{table}[h]
+\caption{Resultados: Frama-C sem penalidades}
   \centering
 \begin{tabular}{l | l}
   \hline
@@ -404,7 +405,6 @@ Nota-se então que a quantidade de Falsos negativos não é 0, descaracterizando
   Falsos Negativos & 0 \\
   \hline
 \end{tabular}
-\caption{Resultados: Frama-C sem penalidades}
 \label{tabela_framac2}
 \end{table}
       de modo que a ferramenta cumpre a pós-condição de não gerar falsos negativos.

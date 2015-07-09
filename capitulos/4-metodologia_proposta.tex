@@ -25,7 +25,7 @@ Por fim, deve-se, para todas as ferramentas,
   \item Apresentar resultados e classificar ferramentas.
 \end{enumerate}
 
-%\input{figuras/fluxograma.tkz}
+\input{figuras/fluxograma.tkz}
 
 Na seção a seguir, \nameref{metodologia_proposta:detalhamento_de_atividades} e em suas subseções, são detalhadas cada uma das atividades listadas, incluindo, quando relevantes, sugestões de como melhor alcançar os resultados de cada uma delas.
 
@@ -75,7 +75,7 @@ Independente do formato ou linguagem utilizados, é importante que se defina, ne
 
 Além de uma notação para reportar defeitos, pode ser interessante também que, para cada ferramenta que atende às precondições dos critérios definidos, determinar a capacidade de detecção de defeitos da ferramenta (ou a combinação de todas ou de combinações específicas, em caso de avaliação de combinações de ferramentas). Para tal, deve haver uma notação comum para defeitos de software.  Uma opção relevante para esta notação são as CWE do  MITRE\footnote{\url{https://cwe.mitre.org/}}, embora haja grandes dificuldades em mapear relatórios de ferramentas de análise estática com as CWE, dado que sua definição é falha em alguns aspectos, abrindo espaços para interpretações ambíguas \cite{yan}, ainda assim, é conveniente, para fins de comparação de defeitos, que exista notação similar. Considere determinada situação onde um caso de testes apresenta o seguinte trecho de código, representado em \nameref{exemplo_cwe120}.
 
-\begin{lstlisting}[language=C, title=cwe120.c, caption=Exemplo de CWE 120, label=exemplo_cwe120]
+\begin{lstlisting}[breaklines=true, language=C, title=cwe120.c, caption=Exemplo de CWE 120, label=exemplo_cwe120]
 char last_name[20];
 printf ("Enter your last name: ");
 scanf ("%s", last_name);
@@ -84,18 +84,18 @@ scanf ("%s", last_name);
 
 Note que, se \lstinline{last_name} for maior que 20 vezes \lstinline{sizeof(char)}, o \textit{buffer} seria excedido, caracterizando um \textit{buffer overflow}. Sabendo disso, uma linguagem comum, definida em YAML\footnote{\url{http://yaml.org/}}, poderia se representado como demonstrado a seguir, em \nameref{relatorio_cwe120}.
 
-\begin{lstlisting}[caption=Relatório de erros do Exemplo de CWE 120,label=relatorio_cwe120]
+\begin{lstlisting}[breaklines=true, caption=Relatório de erros do Exemplo de CWE 120,label=relatorio_cwe120]
 arquivo: teste.c
 linha: 3
 defeito: Buffer Overflow
 \end{lstlisting}
 
 Suponha agora que uma ferramenta de análise estática tenha detectado o defeito presente em \nameref{exemplo_cwe120} representado em \nameref{relatorio_cwe120} e o tenha reportado na forma representada em \nameref{relatorio_ferramenta_qualquer},
-\begin{lstlisting}[caption=Relatório de análise de uma ferramenta qualquer, label=relatorio_ferramenta_qualquer]
+\begin{lstlisting}[breaklines=true, caption=Relatório de análise de uma ferramenta qualquer, label=relatorio_ferramenta_qualquer]
 Defeito encontrado em teste.c:3, "scanf ("%s", last_name);", uso indevido de scanf para entrada de last_name.
 \end{lstlisting}
 e com um \textit{parser}, traduza-se o defeito encontrado para a forma representada em \nameref{relatorio_ferramenta_qualquer_yaml} abaixo:
-\begin{lstlisting}[label=relatorio_ferramenta_qualquer_yaml, caption=Relatório de uma ferramenta qualquer em YAML]
+\begin{lstlisting}[breaklines=true, label=relatorio_ferramenta_qualquer_yaml, caption=Relatório de uma ferramenta qualquer em YAML]
 arquivo: teste.c
 linha: 3
 defeito: uso indevido de scanf
@@ -104,7 +104,7 @@ defeito: uso indevido de scanf
 Ao se compararem os relatórios acima manualmente, é possível inferir que tratam do mesmo defeito, porém existiria neste caso um esforço manual grande para que se comparem todos os defeitos do código com aqueles apontados pela ferramenta. Uma opção seria comparar apenas os arquivos e as linhas para um caso de teste contendo apenas um defeito por arquivo, mas ainda assim haveria a necessidade de inspeção manual, dado que algumas ferramentas podem alertar o defeito na hora de escrita no \textit{buffer} e outras apenas no momento em que o \textit{buffer} for utilizado.
 
 Ao se adotar uma notação comum para os defeitos, como as CWE, dado que exista uma linguagem comum para relatar defeitos, pode-se ter, para ambos os casos, um relatório comum, como representado abaixo em \nameref{relatorio_comum}.
-\begin{lstlisting}[caption=Relatório comum, label=relatorio_comum]
+\begin{lstlisting}[breaklines=true, caption=Relatório comum, label=relatorio_comum]
 arquivo: teste.c
 linha: 3
 defeito: CWE 120
@@ -121,9 +121,9 @@ Nesta atividade, devem-se representar os defeitos conhecidos presentes na suíte
 Assim, todos os defeitos de $S$ serão representados por $L(S)$.
 
 Se a suíte de testes utilizada apresentar as características descritas em \cite{nsa} e \cite{harvard}, onde um caso de testes apresenta um trecho de código com um defeito e em seguida o mesmo trecho de código sem o defeito, pode ser interessante mapear os trechos de código não defeituosos para a linguagem, de modo a medir a taxa de confusão da ferramenta analisada, por exemplo, nos trechos de um caso de teste extraído do Juliet representados em \nameref{trecho_cwe190}, temos:
-\lstinputlisting[language=C, firstline=22, firstnumber=22, lastline=70, label=trecho_cwe190, caption=Trecho de caso de teste da CWE 190]{dados/CWE190_Integer_Overflow__char_max_add_01.c}
+\lstinputlisting[breaklines=true, language=C, firstline=22, firstnumber=22, lastline=70, label=trecho_cwe190, caption=Trecho de caso de teste da CWE 190]{dados/CWE190_Integer_Overflow__char_max_add_01.c}
 de modo que $L(S)$ poderia definir os defeitos da seguinte forma, representado em \nameref{exemplo_LS} seguindo algo similar aos modelos apresentados:
-\begin{lstlisting}[label=exemplo_LS, caption=Exemplo de linguagem para relatórios de defeitos]
+\begin{lstlisting}[breaklines=true, label=exemplo_LS, caption=Exemplo de linguagem para relatórios de defeitos]
 arquivo: testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__char_max_add_01.c
 linha: 30
 defeito: CWE 120
