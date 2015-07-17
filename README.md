@@ -2,7 +2,7 @@
 
 Aluno: Athos Coimbra Ribeiro
 
-Título: Análise Estática de Código-Fonte com Foco em Segurança: Metodologia Para Avaliação de Ferramentas
+Título: Análise Estática de Segurança Código-Fonte: Abordagem Para Avaliação de Ferramentas
 
 Orientador: Prof. Dr. Edson Alves da Costa Júnior
 
